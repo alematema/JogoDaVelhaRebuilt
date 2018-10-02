@@ -11,6 +11,7 @@ import java.util.List;
 public class Tabuleiro {
     
     static public Object POSICAO_LIVRE = 0; 
+    static public Object POSICAO_INVALIDA = -1; 
 
     /**
      * A dimensão do tabuleiro : 2 ou 3 ou 4 ... ou N.
@@ -62,16 +63,16 @@ public class Tabuleiro {
 
         //linha INVÁLIDA
         if (linhaZeroBased < 0 || linhaZeroBased > dimensao - 1) {
-            return -1;
+            return POSICAO_INVALIDA;
         }
         //coluna INVÁLIDA
         if (colunaZeroBased < 0 || colunaZeroBased > dimensao - 1) {
-            return -1;
+            return POSICAO_INVALIDA;
         }
         //elemento inválido
         try {
-            if ((Integer) elemento == -1) {
-                return -1;
+            if (((Integer) elemento).equals(POSICAO_INVALIDA)) {
+                return POSICAO_INVALIDA;
             }
         } catch (Exception e) {
         }
@@ -128,11 +129,11 @@ public class Tabuleiro {
 
         //linha INVÁLIDA
         if (linhaZeroBased < 0 || linhaZeroBased > dimensao - 1) {
-            return -1;
+            return POSICAO_INVALIDA;
         }
         //coluna INVÁLIDA
         if (colunaZeroBased < 0 || colunaZeroBased > dimensao - 1) {
-            return -1;
+            return POSICAO_INVALIDA;
         }
 
         return tabuleiro[(linhaZeroBased * dimensao + colunaZeroBased)];
@@ -282,7 +283,23 @@ public class Tabuleiro {
 
     }
     
-    
+    /**
+     * Diz se uma posicao indicada por linhaXcoluna está livre.
+     * @param linha a linha
+     * @param coluna a coluna
+     * @return true, se está livre a posicao.<br>false, caso ocupada, ou linhaXcoluna seja inválida.
+     */
+    public boolean isPosicaoLivre(int linha, int coluna){
+        
+        boolean isLivre = true;
+        
+        Object o = get(linha,coluna);
+        
+        if( o.equals(POSICAO_INVALIDA) ) isLivre = false;
+        
+        return isLivre;
+        
+    }
 
     @Override
     public String toString() {
