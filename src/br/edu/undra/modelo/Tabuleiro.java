@@ -295,9 +295,7 @@ public class Tabuleiro {
         
         if( o.equals(POSICAO_INVALIDA) ) return false;
         
-        if( ! o.equals(POSICAO_LIVRE) ) return false;
-        
-        return true;
+        return o.equals(POSICAO_LIVRE);
         
     }
 
