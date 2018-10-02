@@ -298,6 +298,22 @@ public class Tabuleiro {
         return o.equals(POSICAO_LIVRE);
         
     }
+    
+    
+    /**
+     * Diz se uma posicao indicada por posicao está livre.
+     * @param posicao a posicao
+     * @return true, se está livre a posicao.<br>false, caso ocupada, ou posicao seja inválida.
+     */
+    public boolean isPosicaoLivre(int posicao){
+        
+        Object o = get(posicao);
+        
+        if( o.equals(POSICAO_INVALIDA) ) return false;
+        
+        return o.equals(POSICAO_LIVRE);
+        
+    }
 
     @Override
     public String toString() {
