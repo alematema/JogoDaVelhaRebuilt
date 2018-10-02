@@ -291,13 +291,13 @@ public class Tabuleiro {
      */
     public boolean isPosicaoLivre(int linha, int coluna){
         
-        boolean isLivre = true;
-        
         Object o = get(linha,coluna);
         
-        if( o.equals(POSICAO_INVALIDA) ) isLivre = false;
+        if( o.equals(POSICAO_INVALIDA) ) return false;
         
-        return isLivre;
+        if( ! o.equals(POSICAO_LIVRE) ) return false;
+        
+        return true;
         
     }
 

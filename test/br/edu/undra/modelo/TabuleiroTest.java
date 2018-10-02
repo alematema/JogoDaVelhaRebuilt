@@ -417,4 +417,141 @@ public class TabuleiroTest {
         
     }
 
+    /**
+     * Test of set method, of class Tabuleiro.
+     */
+    @Test
+    public void testSet_3args() {
+        System.out.println("set_3args");
+       
+    }
+
+    /**
+     * Test of get method, of class Tabuleiro.
+     */
+    @Test
+    public void testGet_int_int() {
+        System.out.println("get_int_int");
+        
+    }
+
+    /**
+     * Test of getColuna method, of class Tabuleiro.
+     */
+    @Test
+    public void testGetColuna() {
+        System.out.println("getColuna");
+
+    }
+
+    /**
+     * Test of getDiagonalPrincipal method, of class Tabuleiro.
+     */
+    @Test
+    public void testGetDiagonalPrincipal() {
+        System.out.println("getDiagonalPrincipal");
+        
+    }
+
+    /**
+     * Test of getDiagonalSecundaria method, of class Tabuleiro.
+     */
+    @Test
+    public void testGetDiagonalSecundaria() {
+        System.out.println("getDiagonalSecundaria");
+        
+    }
+
+    /**
+     * Test of getPosicoesLivres method, of class Tabuleiro.
+     */
+    @Test
+    public void testGetPosicoesLivres() {
+        System.out.println("getPosicoesLivres");
+        
+    }
+
+    /**
+     * Test of isPosicaoLivre method, of class Tabuleiro.
+     */
+    @Test
+    public void testIsPosicaoLivre() {
+        System.out.println("isPosicaoLivre_int_int");
+        int linha = 0;
+        int coluna = 0;
+        int dimensao = 5;
+        Tabuleiro instance = new Tabuleiro(dimensao);
+        boolean expResult = false;
+        boolean result = instance.isPosicaoLivre(linha, coluna);
+        
+        //testa linhaXcoluna inválidas (linha ou coluna < 1  e linha ou coluna > dimensao)
+        linha = 0;//linha invalida
+        coluna = 3;
+        
+        expResult = false;
+        result = instance.isPosicaoLivre(linha, coluna);
+        
+        assertEquals(expResult, result);
+        
+        linha = 2;
+        coluna = 0; //coluna invalida
+        
+        expResult = false;
+        result = instance.isPosicaoLivre(linha, coluna);
+        
+        assertEquals(expResult, result);
+        
+        linha = dimensao + 2;//linha invalida
+        coluna = 3;
+        
+        expResult = false;
+        result = instance.isPosicaoLivre(linha, coluna);
+        
+        assertEquals(expResult, result);
+        
+        linha = 2;
+        coluna = dimensao + 1; //coluna invalida
+        
+        expResult = false;
+        result = instance.isPosicaoLivre(linha, coluna);
+        
+        assertEquals(expResult, result);
+        
+        //testa posicao valida desocupada
+        linha = 1;//linha ialida
+        coluna = 3;//coluna valida
+        
+        expResult = true;
+        result = instance.isPosicaoLivre(linha, coluna);
+        
+        assertEquals(expResult, result);
+        System.out.println(instance.get(linha,coluna));
+        
+        
+        //testa posicao valida OCUPADA
+        linha = 1;//linha ialida
+        coluna = 3;//coluna valida
+        
+        expResult = false;
+        instance.set(9,linha,coluna);
+        System.out.println(instance);
+        result = instance.isPosicaoLivre(linha, coluna);
+        
+        assertEquals(expResult, result);
+        System.out.println(instance.get(linha,coluna));
+        
+        
+    }
+
+    /**
+     * Test of toString method, of class Tabuleiro.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        
+    }
+
+    
+    
 }
