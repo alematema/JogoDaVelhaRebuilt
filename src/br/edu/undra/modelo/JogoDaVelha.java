@@ -11,7 +11,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
     private String id;
 
-    public JogoDaVelha(String nome, List <T> jogadores, Tabuleiro tabuleiro) {
+    public JogoDaVelha(String nome, List<T> jogadores, Tabuleiro tabuleiro) {
         super(nome, jogadores, tabuleiro);
     }
 
@@ -42,47 +42,55 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
         return toString;
     }
-    
+
     JogadorJodoDaVelha ultimoAJogar = null;
     JogadorJodoDaVelha proximoAJogar = null;
-    
+
     @Override
     public JogadorJodoDaVelha getProximoAJogar() {
-       
-        if ( proximoAJogar != null ) {
-            
-            if( !proximoAJogar.jogou() ) return  proximoAJogar;
-                       
-            for (JogadorJodoDaVelha j : (List<JogadorJodoDaVelha>)getJogadores()) {
+
+        if (proximoAJogar != null) {
+
+            if (!proximoAJogar.jogou()) {
+                return proximoAJogar;
+            }
+
+            for (JogadorJodoDaVelha j : (List<JogadorJodoDaVelha>) getJogadores()) {
                 if (!j.equals(ultimoAJogar)) {
-                   
+
                     proximoAJogar = j;
                     break;
-                    
+
                 }
             }
-            
-            
-        }else{
-            
-            for (JogadorJodoDaVelha j : (List<JogadorJodoDaVelha>)getJogadores()) {
-                
+
+        } else {
+
+            for (JogadorJodoDaVelha j : (List<JogadorJodoDaVelha>) getJogadores()) {
+
                 if (j.isPrimeiroAJogar()) {
-                    
+
                     proximoAJogar = j;
-                    
+
                 }
-                
+
             }
-            
+
         }
-        
+
         proximoAJogar.setJogou(false);
         ultimoAJogar = proximoAJogar;
-        
+
         return proximoAJogar;
 
     }
+
+    @Override
+    public String getProximaJogadaParaJogador(Jogador jogador) {
+        if(jogador.jogou()) return null;
+        return "pegando proxima jogada";
+    }
+
 
 //    public static void main(String[] args) {
 //
@@ -103,6 +111,4 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 //        System.err.println(jogoDaVelha);
 //
 //    }
-
-
 }

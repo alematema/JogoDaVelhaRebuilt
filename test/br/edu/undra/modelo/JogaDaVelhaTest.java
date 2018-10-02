@@ -43,7 +43,7 @@ public class JogaDaVelhaTest {
 
         tabuleiro = new Tabuleiro(3);
 
-        jogoDaVelha = new JogoDaVelha("Jogo da Velha", jogadores, tabuleiro);
+        jogoDaVelha = new JogoDaVelha("Jogo da Velha","id1", jogadores, tabuleiro);
 
     }
 

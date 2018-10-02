@@ -5,11 +5,11 @@ package br.edu.undra.modelo;
  * @author alexandre
  */
 public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
-    
+
     public JogadorJodoDaVelha(String nome) {
         super(nome);
     }
-    
+
     public JogadorJodoDaVelha(J jogo) {
         super(jogo);
     }
@@ -20,10 +20,20 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
 
     @Override
     public void joga() {
-        super.joga();
+        
+        //logica de jogar vai aqui
+        
+        System.out.println(((JogoDaVelha)getJogo()).getProximaJogadaParaJogador(this) + " para " + getNome());
+        
+        
+        getJogo().getUltimosAJogar().add(this);
+        System.out.println(getNome() + " jogou");
         setJogou(true);
+        
     }
-    
-    
-    
+
+    public void joga(int novaPosicao) {
+
+    }
+
 }

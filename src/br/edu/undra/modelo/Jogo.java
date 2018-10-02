@@ -65,11 +65,13 @@ public class Jogo<T extends Jogador>  implements Logica{
         this.tabuleiro = tabuleiro;
     }
     
-    @Override
-    public String getProximaJogada() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
+ 
 
+    @Override
+    public String getProximaJogadaParaJogador(Jogador jogador) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     @Override
     public T getProximoAJogar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -83,5 +85,7 @@ public class Jogo<T extends Jogador>  implements Logica{
     public Set<T> getUltimosAJogar() {
         return ultimosAJogar;
     }
+
+    
     
 }

@@ -4,12 +4,13 @@ package br.edu.undra.modelo;
  * Modela um jogador.
  * @author alexandre
  */
-public class Jogador {
+public abstract class Jogador {
     
     private String nome;
     
     private boolean primeiroAJogar = false;
     private boolean jogou = false;
+    private String proximaJogada;
     
     private Jogo jogo;
 
@@ -29,14 +30,7 @@ public class Jogador {
         this.jogo = jogo;
     }
 
-    public void joga(){
-        
-        //logica de vai jogar aqui
-        
-        getJogo().getUltimosAJogar().add(this);
-        System.out.println(nome +" jogou");
-        
-    }
+    abstract public void joga();
     
     public boolean isPrimeiroAJogar() {
         return primeiroAJogar;
@@ -69,8 +63,13 @@ public class Jogador {
     public void setJogo(Jogo jogo) {
         this.jogo = jogo;
     }
-    
-    
-    
+
+    public String getProximaJogada() {
+        return proximaJogada;
+    }
+
+    public void setProximaJogada(String proximaJogada) {
+        this.proximaJogada = proximaJogada;
+    }
     
 }

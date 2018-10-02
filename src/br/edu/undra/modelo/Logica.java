@@ -8,7 +8,7 @@ import java.util.Set;
  */
 public interface Logica<T extends Jogador> {
     
-    String getProximaJogada();
+    String getProximaJogadaParaJogador(T jogador);
     T getProximoAJogar();
     Set<T> getUltimosAJogar();
     
