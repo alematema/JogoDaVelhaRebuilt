@@ -307,11 +307,27 @@ public class Tabuleiro {
      */
     public boolean isPosicaoLivre(int posicao){
         
-        Object o = get(posicao);
+//        Object o = get(posicao);
+//        
+//        if( o.equals(POSICAO_INVALIDA) ) return false;
+//        
+//        return o.equals(POSICAO_LIVRE);
         
-        if( o.equals(POSICAO_INVALIDA) ) return false;
-        
-        return o.equals(POSICAO_LIVRE);
+        if (posicao <= 0) {
+            return isPosicaoLivre(0, 0);
+        }
+        if (posicao == 1) {
+            return isPosicaoLivre(1, 1);
+        }
+        if (posicao == dimensao * dimensao) {
+            return isPosicaoLivre(dimensao, dimensao);
+        }
+
+        int linha = (posicao-1) / dimensao;
+        int coluna = posicao % dimensao;
+        if(coluna == 0) coluna = dimensao;
+
+        return isPosicaoLivre(linha + 1, coluna);
         
     }
 

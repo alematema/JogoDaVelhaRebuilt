@@ -598,6 +598,8 @@ public class TabuleiroTest {
         assertEquals(expResult, result);
         System.out.println(instance.get(posicao));
         
+        
+        
     }
 
     
