@@ -41,21 +41,15 @@ public class JogaDaVelhaTest {
         jogadores.add(jogador2);
         jogadores.add(jogador1);
 
-        tabuleiro = new Tabuleiro(3);
+        tabuleiro = new Tabuleiro(5);
 
-        jogoDaVelha = new JogoDaVelha("Jogo da Velha","id1", jogadores, tabuleiro);
+        jogoDaVelha = new JogoDaVelha("Jogo da Velha", jogadores, tabuleiro);
 
     }
 
     @After
     public void tearDown() {
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     @Test
     public void testGetProximoAJogar() {
 
@@ -81,6 +75,42 @@ public class JogaDaVelhaTest {
         
         assertTrue(jogador2.jogou());
               
+    }
+    
+    @Test
+    public void testgetProximaJogadaParaJogador(){
+        
+        System.err.println("testgetProximaJogadaParaJogador");
+        
+        setUp();
+
+        jogador1.setPrimeiroAJogar(true);
+        
+        //pegando proxima jogada para jogador que não jogou
+        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador1));
+        
+        //pegando proxima jogada para jogador que JOGOU
+        jogoDaVelha.getProximoAJogar().joga();
+        assertEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador1));
+        
+        assertEquals(jogador2,jogoDaVelha.getProximoAJogar());
+        assertEquals(jogador2,jogoDaVelha.getProximoAJogar());
+        assertEquals(jogador2,jogoDaVelha.getProximoAJogar());
+        assertEquals(false, jogador2.jogou());        
+        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
+        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
+        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
+        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
+        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
+        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
+        
+        jogoDaVelha.getProximoAJogar().joga();
+        assertEquals(true, jogador2.jogou());        
+        assertEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
+        
+        jogoDaVelha.getUltimosAJogar().forEach(e -> System.err.println(e));
+        
+        
     }
 
 }
