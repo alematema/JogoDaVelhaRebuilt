@@ -471,11 +471,21 @@ public class TabuleiroTest {
         
     }
 
+    
+    /**
+     * Test of toString method, of class Tabuleiro.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        
+    }
+
     /**
      * Test of isPosicaoLivre method, of class Tabuleiro.
      */
     @Test
-    public void testIsPosicaoLivre() {
+    public void testIsPosicaoLivre_int_int() {
         System.out.println("isPosicaoLivre_int_int");
         int linha = 0;
         int coluna = 0;
@@ -539,16 +549,54 @@ public class TabuleiroTest {
         
         assertEquals(expResult, result);
         System.out.println(instance.get(linha,coluna));
-        
-        
     }
 
     /**
-     * Test of toString method, of class Tabuleiro.
+     * Test of isPosicaoLivre method, of class Tabuleiro.
      */
     @Test
-    public void testToString() {
-        System.out.println("toString");
+    public void testIsPosicaoLivre_int() {
+        
+        System.out.println("isPosicaoLivre_int");
+        int posicao = 0;
+        int dimensao = 5;
+        Tabuleiro instance = new Tabuleiro(dimensao);
+        boolean expResult = false;
+        boolean result = instance.isPosicaoLivre(posicao);
+        
+        //testa posicao inválidas (posicao < 1  e posicao > dimensao*dimensao)
+        posicao = 0; //posicao abaixo limite
+        expResult = false;
+        result = instance.isPosicaoLivre(posicao);
+        
+        assertEquals(expResult, result);
+        
+        posicao = dimensao*dimensao + 1;//posicao acima limite
+        
+        expResult = false;
+        result = instance.isPosicaoLivre(posicao);
+        
+        assertEquals(expResult, result);
+               
+        //testa posicao valida desocupada
+        posicao = dimensao - 1;//posicao valida
+        
+        expResult = true;
+        result = instance.isPosicaoLivre(posicao);
+        
+        assertEquals(expResult, result);
+        System.out.println(instance.get(posicao));
+        
+        
+        //testa posicao valida OCUPADA
+        posicao = dimensao - 1;//posicao valida    
+        expResult = false;
+        instance.set(9,posicao);
+        System.out.println(instance);
+        result = instance.isPosicaoLivre(posicao);
+        
+        assertEquals(expResult, result);
+        System.out.println(instance.get(posicao));
         
     }
 
