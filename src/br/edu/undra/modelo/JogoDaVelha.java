@@ -13,14 +13,23 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
     public JogoDaVelha(String nome, List<T> jogadores, Tabuleiro tabuleiro) {
         super(nome, jogadores, tabuleiro);
+        if (jogadores.size() != 2) {
+            throw new IllegalArgumentException("Devem haver EXATAMENTE 2 jogadores para o jogo da velha ok.");
+        }
     }
 
     public JogoDaVelha(List<T> jogadores, Tabuleiro tabuleiro) {
         super(jogadores, tabuleiro);
+        if (jogadores.size() != 2) {
+            throw new IllegalArgumentException("Devem haver EXATAMENTE 2 jogadores para o jogo da velha ok.");
+        }
     }
 
     public JogoDaVelha(String nome, String id, List<T> jogadores, Tabuleiro tabuleiro) {
         super(nome, jogadores, tabuleiro);
+        if (jogadores.size() != 2) {
+            throw new IllegalArgumentException("Devem haver EXATAMENTE 2 jogadores para o jogo da velha ok.");
+        }
         this.id = id;
     }
 
@@ -55,6 +64,8 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
                 return proximoAJogar;
             }
 
+            getUltimosAJogar().clear();
+            
             for (JogadorJodoDaVelha j : (List<JogadorJodoDaVelha>) getJogadores()) {
                 if (!j.equals(ultimoAJogar)) {
 
@@ -87,10 +98,12 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
     @Override
     public String getProximaJogadaParaJogador(Jogador jogador) {
-        if(jogador.jogou()) return null;
-        return "pegando proxima jogada";
+        if (jogador.jogou()) {
+            return null;
+        }
+        System.out.println("pegando proxima jogada para " + jogador.getNome() + ", " +System.nanoTime());
+        return "pegando proxima jogada para " + jogador.getNome();
     }
-
 
 //    public static void main(String[] args) {
 //

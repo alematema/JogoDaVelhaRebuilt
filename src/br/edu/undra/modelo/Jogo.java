@@ -64,8 +64,6 @@ public class Jogo<T extends Jogador>  implements Logica{
     public void setTabuleiro(Tabuleiro tabuleiro) {
         this.tabuleiro = tabuleiro;
     }
-    
- 
 
     @Override
     public String getProximaJogadaParaJogador(Jogador jogador) {

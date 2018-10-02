@@ -20,19 +20,16 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
 
     @Override
     public void joga() {
-        
+
         //logica de jogar vai aqui
-        
-        System.out.println(((JogoDaVelha)getJogo()).getProximaJogadaParaJogador(this) + " para " + getNome());
-        
-        
+
         getJogo().getUltimosAJogar().add(this);
         System.out.println(getNome() + " jogou");
         setJogou(true);
-        
+
     }
 
-    public void joga(int novaPosicao) {
+    public void joga(int posicao) {
 
     }
 
