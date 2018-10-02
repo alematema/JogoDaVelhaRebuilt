@@ -104,9 +104,8 @@ public class Tabuleiro {
             return set(elemento, dimensao, dimensao);
         }
 
-        int linha = (posicao - 1) / dimensao;
-        int coluna = posicao % dimensao;
-        if(coluna == 0) coluna = dimensao;
+        int linha = transformarEmLinha(posicao);
+        int coluna = transformarEmColuna(posicao);
         
         return set(elemento, linha + 1, coluna);
 
@@ -161,9 +160,8 @@ public class Tabuleiro {
             return get(dimensao, dimensao);
         }
 
-        int linha = (posicao-1) / dimensao;
-        int coluna = posicao % dimensao;
-        if(coluna == 0) coluna = dimensao;
+        int linha = transformarEmLinha(posicao);
+        int coluna = transformarEmColuna(posicao);
 
         return get(linha + 1, coluna);
 
@@ -307,12 +305,6 @@ public class Tabuleiro {
      */
     public boolean isPosicaoLivre(int posicao){
         
-//        Object o = get(posicao);
-//        
-//        if( o.equals(POSICAO_INVALIDA) ) return false;
-//        
-//        return o.equals(POSICAO_LIVRE);
-        
         if (posicao <= 0) {
             return isPosicaoLivre(0, 0);
         }
@@ -323,12 +315,23 @@ public class Tabuleiro {
             return isPosicaoLivre(dimensao, dimensao);
         }
 
-        int linha = (posicao-1) / dimensao;
-        int coluna = posicao % dimensao;
-        if(coluna == 0) coluna = dimensao;
-
+        int linha = transformarEmLinha(posicao);
+        int coluna = transformarEmColuna(posicao);
+        
         return isPosicaoLivre(linha + 1, coluna);
         
+    }
+    
+    private int transformarEmLinha(int posicao){
+        return (posicao-1) / dimensao;
+    }
+    
+    private int transformarEmColuna(int posicao){
+        
+        int coluna = posicao % dimensao;
+        if(coluna == 0) coluna = dimensao;
+        
+        return coluna;
     }
 
     @Override
