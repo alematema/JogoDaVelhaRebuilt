@@ -177,7 +177,7 @@ public class JogaDaVelhaTest {
         //houveram APENAS DUAS jogadas. ENTAO, AS POSICOES OCUPADAS DEVEM CONTER OS VALORES 1 E 2, APENAS    
         assertEquals(2, jogoDaVelha.getTabuleiro().getPosicoeOcupadas().size());
         List<Object> posicoesOcupadas = jogoDaVelha.getTabuleiro().getPosicoeOcupadas();
-        List<Integer> valoresQueNaoDevemEstarNoTabuleiro = Arrays.asList(3,4, 5, 6, 7, 8, 9);
+        List<Integer> valoresQueNaoDevemEstarNoTabuleiro = Arrays.asList(3, 4, 5, 6, 7, 8, 9);
 
         for (Object posicao : posicoesOcupadas) {
 
@@ -185,20 +185,19 @@ public class JogaDaVelhaTest {
 
             int linha = Integer.parseInt(pos.split(",")[0]);
             int coluna = Integer.parseInt(pos.split(",")[1]);
-            
-            int valor = (Integer)jogoDaVelha.getTabuleiro().get(linha, coluna);
-            
+
+            int valor = (Integer) jogoDaVelha.getTabuleiro().get(linha, coluna);
+
             assertTrue(!valoresQueNaoDevemEstarNoTabuleiro.contains(valor));
-            
-            if ( (valor != 1) ){
-                
+
+            if ((valor != 1)) {
+
                 assertEquals(2, valor);
-            
-            }else if( valor == 1){//redundante
-            }else{
+
+            } else if (valor == 1) {//redundante
+            } else {
                 fail("ESTADOS INCONSISTENTES DOS JOGADORES. ");
             }
- 
 
         }
 
@@ -222,6 +221,39 @@ public class JogaDaVelhaTest {
         assertEquals(3, jogador1.getElemento());
         assertEquals(6, jogador2.getAtual());
         assertEquals(4, jogador2.getElemento());
+
+        //houveram APENAS TRES jogadas. ENTAO, NUMERO DE POSICOES LIVRES DEVE SER 
+        // 9 - 3 = 6 POSICOES LIVRES
+        assertEquals(6, jogoDaVelha.getTabuleiro().getPosicoesLivres().size());
+
+        //houveram APENAS TRES jogadas. ENTAO, AS POSICOES OCUPADAS DEVEM CONTER OS VALORES 1,2 E 3, APENAS    
+        assertEquals(3, jogoDaVelha.getTabuleiro().getPosicoeOcupadas().size());
+        posicoesOcupadas = jogoDaVelha.getTabuleiro().getPosicoeOcupadas();
+        valoresQueNaoDevemEstarNoTabuleiro = Arrays.asList(4, 5, 6, 7, 8, 9);
+        List<Integer> valoresQueDevemEstarNoTabuleiro = Arrays.asList(1, 2, 3);
+
+        boolean todosValoresDistintosEntreSi = true;
+        int ultimoValor=Integer.MAX_VALUE;
+        
+        for (Object posicao : posicoesOcupadas) {
+
+            String pos = (String) posicao;
+
+            int linha = Integer.parseInt(pos.split(",")[0]);
+            int coluna = Integer.parseInt(pos.split(",")[1]);
+
+            int valor = (Integer) jogoDaVelha.getTabuleiro().get(linha, coluna);
+
+            
+            assertTrue(!valoresQueNaoDevemEstarNoTabuleiro.contains(valor));
+
+            todosValoresDistintosEntreSi = todosValoresDistintosEntreSi&&(ultimoValor!=valor);
+            
+            ultimoValor = valor;
+
+        }
+        
+        if( ! todosValoresDistintosEntreSi )fail("ESTADOS INCONSISTENTES DOS JOGADORES. ");
 
     }
 
