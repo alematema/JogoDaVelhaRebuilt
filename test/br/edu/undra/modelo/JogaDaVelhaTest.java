@@ -233,8 +233,8 @@ public class JogaDaVelhaTest {
         List<Integer> valoresQueDevemEstarNoTabuleiro = Arrays.asList(1, 2, 3);
 
         boolean todosValoresDistintosEntreSi = true;
-        int ultimoValor=Integer.MAX_VALUE;
-        
+        int ultimoValor = Integer.MAX_VALUE;
+
         for (Object posicao : posicoesOcupadas) {
 
             String pos = (String) posicao;
@@ -244,42 +244,182 @@ public class JogaDaVelhaTest {
 
             int valor = (Integer) jogoDaVelha.getTabuleiro().get(linha, coluna);
 
-            
             assertTrue(!valoresQueNaoDevemEstarNoTabuleiro.contains(valor));
 
-            todosValoresDistintosEntreSi = todosValoresDistintosEntreSi&&(ultimoValor!=valor);
-            
+            todosValoresDistintosEntreSi = todosValoresDistintosEntreSi && (ultimoValor != valor);
+
             ultimoValor = valor;
 
         }
-        
-        if( ! todosValoresDistintosEntreSi )fail("ESTADOS INCONSISTENTES DOS JOGADORES. ");
+
+        if (!todosValoresDistintosEntreSi) {
+            fail("ESTADOS INCONSISTENTES DOS JOGADORES. ");
+        }
 
     }
-    
-    @Test public void testAoMenosUmaTrinca_object_object(){
-        
-        List<Integer> elementos = Arrays.asList(1,3,5);
-        
+
+    @Test
+    public void testAoMenosUmaTrinca_object_object() {
+
+        List<Integer> elementos = Arrays.asList(1, 3, 5);
+
         jogador1.setPrimeiroAJogar(true);
-        
+
         assertTrue(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador1));
         assertFalse(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador2));
-        
-        elementos = Arrays.asList(1,0,0);
+
+        elementos = Arrays.asList(1, 0, 0);
         assertFalse(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador1));
-        
-        elementos = Arrays.asList(2,4,6);
+
+        elementos = Arrays.asList(2, 4, 6);
         assertTrue(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador2));
-        
-        elementos = Arrays.asList(2,0,6);
+
+        elementos = Arrays.asList(2, 0, 6);
         assertFalse(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador2));
-        
-        elementos = Arrays.asList(2,4,6);
+
+        elementos = Arrays.asList(2, 4, 6);
         assertFalse(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador1));
-        
-        elementos = Arrays.asList(1,3,5);
+
+        elementos = Arrays.asList(1, 3, 5);
         assertFalse(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador2));
+
+    }
+
+    @Test
+    public void jogadorVenceu_Object() {
+
+        jogador1.setPrimeiroAJogar(true);
+
+        //simula uma trinca na linha 1, do jogador 1
+        jogoDaVelha.getTabuleiro().set(1, 1);
+        jogoDaVelha.getTabuleiro().set(3, 2);
+        jogoDaVelha.getTabuleiro().set(7, 3);
+
+        assertTrue(jogoDaVelha.jogadorVenceu(jogador1));
+        assertEquals("linha 1", jogoDaVelha.getOndeVenceu());
+
+        setUp();
+        jogador1.setPrimeiroAJogar(true);
+
+        //simula uma trinca na linha 2, do jogador 1
+        jogoDaVelha.getTabuleiro().set(1, 4);
+        jogoDaVelha.getTabuleiro().set(3, 5);
+        jogoDaVelha.getTabuleiro().set(7, 6);
+
+        assertTrue(jogoDaVelha.jogadorVenceu(jogador1));
+        assertEquals("linha 2", jogoDaVelha.getOndeVenceu());
+
+        setUp();
+        jogador1.setPrimeiroAJogar(true);
+        
+        //simula uma trinca na linha 3, do jogador 1
+        jogoDaVelha.getTabuleiro().set(1, 7);
+        jogoDaVelha.getTabuleiro().set(3, 8);
+        jogoDaVelha.getTabuleiro().set(7, 9);
+
+        assertTrue(jogoDaVelha.jogadorVenceu(jogador1));
+        assertEquals("linha 3", jogoDaVelha.getOndeVenceu());
+        
+        setUp();
+        jogador1.setPrimeiroAJogar(true);
+        
+        //simula uma trinca na coluna 1, do jogador 1
+        jogoDaVelha.getTabuleiro().set(1, 1);
+        jogoDaVelha.getTabuleiro().set(3, 4);
+        jogoDaVelha.getTabuleiro().set(7, 7);
+
+        assertTrue(jogoDaVelha.jogadorVenceu(jogador1));
+        assertEquals("coluna 1", jogoDaVelha.getOndeVenceu());
+
+        
+        setUp();
+        jogador1.setPrimeiroAJogar(true);
+        
+        //simula uma trinca na diagonal principal, do jogador 1
+        jogoDaVelha.getTabuleiro().set(1, 1);
+        jogoDaVelha.getTabuleiro().set(3, 5);
+        jogoDaVelha.getTabuleiro().set(7, 9);
+
+        assertTrue(jogoDaVelha.jogadorVenceu(jogador1));
+        assertEquals("diagonal principal", jogoDaVelha.getOndeVenceu());
+        
+        setUp();
+        jogador1.setPrimeiroAJogar(true);
+        
+        //simula uma trinca na diagonal secundaria, do jogador 1
+        jogoDaVelha.getTabuleiro().set(1, 3);
+        jogoDaVelha.getTabuleiro().set(3, 5);
+        jogoDaVelha.getTabuleiro().set(7, 7);
+
+        assertTrue(jogoDaVelha.jogadorVenceu(jogador1));
+        assertEquals("diagonal secundaria", jogoDaVelha.getOndeVenceu());
+        
+        
+        setUp();
+        jogador1.setPrimeiroAJogar(true);
+        
+        //simula uma trinca na linha 1, do jogador 2
+        jogoDaVelha.getTabuleiro().set(2, 1);
+        jogoDaVelha.getTabuleiro().set(4, 2);
+        jogoDaVelha.getTabuleiro().set(6, 3);
+
+        assertTrue(jogoDaVelha.jogadorVenceu(jogador2));
+        assertEquals("linha 1", jogoDaVelha.getOndeVenceu());
+        
+        setUp();
+        jogador1.setPrimeiroAJogar(true);
+        
+        //simula uma trinca na linha 2, do jogador 2
+        jogoDaVelha.getTabuleiro().set(2, 4);
+        jogoDaVelha.getTabuleiro().set(4, 5);
+        jogoDaVelha.getTabuleiro().set(6, 6);
+
+        assertTrue(jogoDaVelha.jogadorVenceu(jogador2));
+        assertEquals("linha 2", jogoDaVelha.getOndeVenceu());
+        
+        setUp();
+        jogador1.setPrimeiroAJogar(true);
+        
+        //simula uma trinca na coluna 2, do jogador 2
+        jogoDaVelha.getTabuleiro().set(2, 2);
+        jogoDaVelha.getTabuleiro().set(4, 5);
+        jogoDaVelha.getTabuleiro().set(6, 8);
+
+        assertTrue(jogoDaVelha.jogadorVenceu(jogador2));
+        assertEquals("coluna 2", jogoDaVelha.getOndeVenceu());
+        
+        setUp();
+        jogador1.setPrimeiroAJogar(true);
+        
+        //simula uma trinca na coluna 3, do jogador 2
+        jogoDaVelha.getTabuleiro().set(2, 3);
+        jogoDaVelha.getTabuleiro().set(4, 6);
+        jogoDaVelha.getTabuleiro().set(6, 9);
+
+        assertTrue(jogoDaVelha.jogadorVenceu(jogador2));
+        assertEquals("coluna 3", jogoDaVelha.getOndeVenceu());
+        
+        setUp();
+        jogador1.setPrimeiroAJogar(true);
+        
+        //simula uma trinca na diagonal principal, do jogador 2
+        jogoDaVelha.getTabuleiro().set(2, 1);
+        jogoDaVelha.getTabuleiro().set(4, 5);
+        jogoDaVelha.getTabuleiro().set(6, 9);
+
+        assertTrue(jogoDaVelha.jogadorVenceu(jogador2));
+        assertEquals("diagonal principal", jogoDaVelha.getOndeVenceu());
+        
+        setUp();
+        jogador1.setPrimeiroAJogar(true);
+        
+        //simula uma trinca na diagonal secundaria, do jogador 2
+        jogoDaVelha.getTabuleiro().set(2, 3);
+        jogoDaVelha.getTabuleiro().set(4, 5);
+        jogoDaVelha.getTabuleiro().set(6, 7);
+
+        assertTrue(jogoDaVelha.jogadorVenceu(jogador2));
+        assertEquals("diagonal secundaria", jogoDaVelha.getOndeVenceu());
         
     }
 

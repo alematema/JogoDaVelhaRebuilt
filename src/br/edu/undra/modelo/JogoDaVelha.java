@@ -2,6 +2,7 @@ package br.edu.undra.modelo;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Um jogo da velha
@@ -14,6 +15,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
     private JogadorJodoDaVelha jogador1;
     private JogadorJodoDaVelha jogador2;
+    private String ondeVenceu="";
 
     public JogoDaVelha(String nome) {
 
@@ -71,6 +73,10 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
         return jogador2;
     }
 
+    public String getOndeVenceu() {
+        return ondeVenceu;
+    }
+    
     public String getId() {
         return id;
     }
@@ -174,11 +180,12 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
             if (aoMenosUmaTrinca(elementos, jogador)) {
                 venceu = true;
+                ondeVenceu = "coluna "+coluna;
                 break;
             }
 
         }
-
+        
         if (!venceu) {//CONTINUA PROCURANDO TRINCA ...
 
             //varre linhas procurando trinca
@@ -188,6 +195,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
                 if (aoMenosUmaTrinca(elementos, jogador)) {
                     venceu = true;
+                    ondeVenceu = "linha "+linha;
                     break;
                 }
 
@@ -204,6 +212,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
                 if (aoMenosUmaTrinca(elementos, jogador)) {
                     venceu = true;
+                    ondeVenceu = "diagonal principal";
                     break;
                 }
 
@@ -220,6 +229,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
                 if (aoMenosUmaTrinca(elementos, jogador)) {
                     venceu = true;
+                    ondeVenceu = "diagonal secundaria";
                     break;
                 }
 
@@ -247,7 +257,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
             //procura por apenas PARES, DIFERENTES DE MARCADOR POSICAO_LIVRE
             for (Object e : elementos) {
-                if (((Integer) e) == (Integer) Tabuleiro.POSICAO_LIVRE || (((Integer) e) % 2 != 0)) {
+                if (Objects.equals((Integer) e, (Integer) Tabuleiro.POSICAO_LIVRE) || (((Integer) e) % 2 != 0)) {
                     aoMenosUmaTrinca = false;
                     break;
                 }
