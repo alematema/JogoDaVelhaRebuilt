@@ -78,7 +78,7 @@ public class JogadorJogoDaVelhaTest {
         System.out.println(jogador2.getJogadas());
     }
 
-//    @Test
+    @Test
     public void testDesfazerUltimaJogada() {
 
         System.err.println("testDesfazerUltimaJogada");
@@ -218,96 +218,7 @@ public class JogadorJogoDaVelhaTest {
         System.out.println(jogador2.getJogadas());
     }
 
-    @Test
-    public void testDesfazerUltimaJogadadown() {
-
-        System.err.println("testDesfazerUltimaJogada");
-
-        setUp();
-
-        jogador1.setPrimeiroAJogar(true);
-
-        assertEquals(jogador1, jogoDaVelha.getProximoAJogar());
-        assertTrue(!jogador1.jogou());
-
-        assertEquals(0, jogador1.getJogadas().size());
-        assertEquals(0, jogador2.getJogadas().size());
-
-        jogoDaVelha.getProximoAJogar().joga();
-        jogoDaVelha.getProximoAJogar().joga();
-
-        assertEquals(1, jogador1.getJogadas().size());
-        assertEquals(1, jogador2.getJogadas().size());
-
-        //desfaz ultima jogada do jogador 2
-        String ultimaJogada = (String) jogador2.getJogadas().get(jogador2.getJogadas().size() - 1);
-
-        //recupero da ultima jogada a posicao ou linhaXcoluna
-        int linha = Integer.parseInt(ultimaJogada.split(",")[0]);
-        int coluna = Integer.parseInt(ultimaJogada.split(",")[1]);
-        //jogador 2 escreveu valor 2 em linha e coluna e logico a posicao NAO esta livre.
-        assertNotEquals(Tabuleiro.POSICAO_LIVRE, jogoDaVelha.getTabuleiro().get(linha, coluna));
-        assertEquals(2, jogoDaVelha.getTabuleiro().get(linha, coluna));
-        assertEquals(jogador1, jogoDaVelha.getProximoAJogar());
-        assertNotEquals(jogador2, jogoDaVelha.getProximoAJogar());
-
-        //desfaz jogada do jogador 2
-        jogador2.desfazerUltimaJogada();
-
-        //jogador 2 APAGOU valor 2 em linha e coluna e logico a posicao ESTA livre.
-        assertEquals(Tabuleiro.POSICAO_LIVRE, jogoDaVelha.getTabuleiro().get(linha, coluna));
-        assertNotEquals(2, jogoDaVelha.getTabuleiro().get(linha, coluna));
-        assertEquals(0, jogador2.getJogadas().size());
-        assertNotEquals(jogador1, jogoDaVelha.getProximoAJogar());
-        assertEquals(jogador2, jogoDaVelha.getProximoAJogar());
-
-        jogoDaVelha.getProximoAJogar().joga();
-
-        assertEquals(1, jogador1.getJogadas().size());
-        assertEquals(1, jogador2.getJogadas().size());
-
-        //reccupera ultima jogada do jogador 2
-        ultimaJogada = (String) jogador2.getJogadas().get(jogador2.getJogadas().size() - 1);
-
-        //recupero da ultima jogada a posicao ou linhaXcoluna
-        linha = Integer.parseInt(ultimaJogada.split(",")[0]);
-        coluna = Integer.parseInt(ultimaJogada.split(",")[1]);
-        //jogador 2 escreveu valor 2 em linha e coluna e logico a posicao NAO esta livre.
-        assertNotEquals(Tabuleiro.POSICAO_LIVRE, jogoDaVelha.getTabuleiro().get(linha, coluna));
-        assertEquals(2, jogoDaVelha.getTabuleiro().get(linha, coluna));
-        assertEquals(jogador1, jogoDaVelha.getProximoAJogar());
-        assertNotEquals(jogador2, jogoDaVelha.getProximoAJogar());
-
-        jogoDaVelha.getProximoAJogar().joga();
-        jogoDaVelha.getProximoAJogar().joga();
-        jogoDaVelha.getProximoAJogar().joga();
-
-        assertEquals(3, jogador1.getJogadas().size());
-        assertEquals(2, jogador2.getJogadas().size());
-
-        //reccupera ultima jogada do jogador 1
-        ultimaJogada = (String) jogador1.getJogadas().get(jogador1.getJogadas().size() - 1);
-
-        //recupero da ultima jogada a posicao ou linhaXcoluna
-        linha = Integer.parseInt(ultimaJogada.split(",")[0]);
-        coluna = Integer.parseInt(ultimaJogada.split(",")[1]);
-        //jogador 1 escreveu valor 5 em linha e coluna e logico a posicao NAO esta livre.
-        assertNotEquals(Tabuleiro.POSICAO_LIVRE, jogoDaVelha.getTabuleiro().get(linha, coluna));
-        assertEquals(5, jogoDaVelha.getTabuleiro().get(linha, coluna));
-        assertEquals(jogador2, jogoDaVelha.getProximoAJogar());
-        assertNotEquals(jogador1, jogoDaVelha.getProximoAJogar());
-
-        jogador1.desfazerUltimaJogada();
-        jogoDaVelha.getProximoAJogar().joga();
-
-        jogoDaVelha.getProximoAJogar().joga();
-
-        System.out.println(jogador1.getJogadas());
-        System.out.println(jogador2.getJogadas());
-
-    }
-
-    // @Test
+       @Test
     public void testJoga_int_int() {
 
         System.out.println("testJoga_int_int");
