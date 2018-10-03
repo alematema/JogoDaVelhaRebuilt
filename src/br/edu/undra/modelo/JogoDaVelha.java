@@ -82,6 +82,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
             getUltimosAJogar().clear();
             
             for (JogadorJodoDaVelha j : (List<JogadorJodoDaVelha>) getJogadores()) {
+                
                 if (!j.equals(proximoAJogar)) {
 
                     proximoAJogar = j;
@@ -104,13 +105,13 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
         }
         
-        if (proximoAJogar.isPrimeiroAJogar()) {
-
-        } else {
-            if (proximoAJogar.getAtual() == 1) {
-                proximoAJogar.setAtual(2);
-            }
-        }
+//        if (proximoAJogar.isPrimeiroAJogar()) {
+//
+//        } else {
+//            if (proximoAJogar.getAtual() == 1) {
+//                proximoAJogar.setAtual(2);
+//            }
+//        }
 
         proximoAJogar.setElemento(proximoAJogar.getAtual());
         proximoAJogar.setAtual(proximoAJogar.getAtual() + 2);
