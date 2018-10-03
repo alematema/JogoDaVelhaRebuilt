@@ -13,6 +13,7 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
     private int atual = 2;
     private int elemento = 0;
     private String ultimoEstadoAposJogar;
+    private String bolaOuX = "O";
 
     public JogadorJodoDaVelha(String nome) {
         super(nome);
@@ -54,6 +55,7 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
     public void setPrimeiroAJogar(boolean primeiroAJogar) {
         super.setPrimeiroAJogar(primeiroAJogar);
         atual = 1;
+        bolaOuX = "X";
     }
 
     @Override
@@ -112,6 +114,10 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
         return (JogoDaVelha) super.getJogo();
     }
 
+    public boolean venceu(){
+        return getJogo().jogadorVenceu(this);
+    }
+    
     @Override
     public void joga() {
 
