@@ -87,12 +87,30 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
     @Override
     public String toString() {
+        
         String toString = "";
 
         toString += getNome();
         toString += "\n\n";
-        toString += getTabuleiro().toString();
 
+        String[] estados = getTabuleiro().getEstado().split((String)Tabuleiro.SEPARADOR);
+
+        int coluna = 1;
+        
+        for(String estado : estados){
+            
+            int valor = Integer.parseInt(estado.split(",")[2]);
+            
+            if( valor == 0 )toString+=". ";
+            else if( valor % 2 == 0 ) toString+="o ";
+            else toString+="x ";
+            
+            if( coluna % 3 == 0) toString+="\n";
+            
+            coluna++;
+            
+        }
+        
         return toString;
     }
 
@@ -266,5 +284,11 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
         }
 
         return aoMenosUmaTrinca;
+    }
+    
+    public static void main(String[] args) {
+        JogoDaVelha jogoDaVelha = new JogoDaVelha("Jogo Da Velha");
+        System.err.println(jogoDaVelha);
+        
     }
 }
