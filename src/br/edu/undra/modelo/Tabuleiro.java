@@ -46,6 +46,14 @@ public class Tabuleiro {
     }
 
     /**
+     * get a dimensao
+     * @return a dimensao
+     */
+    public int getDimensao() {
+        return dimensao;
+    }
+    
+    /**
      * Insere o elemento no cruzamento da linha e da coluna.
      *
      * @param elemento o elemento a ser colocado em linhaXcoluna;
