@@ -51,6 +51,10 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
         this.ultimoEstadoAposJogar = ultimoEstadoAposJogar;
     }
 
+    public String getBolaOuX() {
+        return bolaOuX;
+    }
+
     @Override
     public void setPrimeiroAJogar(boolean primeiroAJogar) {
         super.setPrimeiroAJogar(primeiroAJogar);
