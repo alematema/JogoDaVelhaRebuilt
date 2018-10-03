@@ -112,5 +112,72 @@ public class JogaDaVelhaTest {
         
         
     }
+    
+    @Test public void testEstadoJogadorAposGetProximoAJogar(){
+        
+        System.err.println("testEstadoJogadorAposGetProximoAJogar");
+        
+        setUp();
+
+        jogador1.setPrimeiroAJogar(true);
+        
+        assertEquals(1, jogador1.getAtual());
+        assertEquals(1, jogador2.getAtual());
+        
+        //muda estados atual de jogador1 apenas
+        jogoDaVelha.getProximoAJogar();
+        
+        assertEquals(3, jogador1.getAtual());
+        assertEquals(1, jogador2.getAtual());
+        assertEquals(1, jogador1.getElemento());
+        
+        //NAO MUDA estado do jogadores
+        jogoDaVelha.getProximoAJogar();
+        assertEquals(3, jogador1.getAtual());
+        assertEquals(1, jogador2.getAtual());
+        assertEquals(1, jogador1.getElemento());
+        
+        //NAO muda estados APOS jodador1 JOGAR
+        jogoDaVelha.getProximoAJogar().joga();
+        assertEquals(3, jogador1.getAtual());
+        assertEquals(1, jogador2.getAtual());
+        assertEquals(1, jogador1.getElemento());
+        
+        //muda estados atual de jogador2 apenas
+        jogoDaVelha.getProximoAJogar();
+        assertEquals(3, jogador1.getAtual());
+        assertEquals(1, jogador1.getElemento());
+        assertEquals(4, jogador2.getAtual());
+        assertEquals(2, jogador2.getElemento());
+        
+        //NAO muda estados APOS jodador2 JOGAR
+        jogoDaVelha.getProximoAJogar().joga();
+        assertEquals(3, jogador1.getAtual());
+        assertEquals(1, jogador1.getElemento());
+        assertEquals(4, jogador2.getAtual());
+        assertEquals(2, jogador2.getElemento());
+        
+        //muda estados atual de jogador1 apenas
+        jogoDaVelha.getProximoAJogar();
+        assertEquals(5, jogador1.getAtual());
+        assertEquals(3, jogador1.getElemento());
+        assertEquals(4, jogador2.getAtual());
+        assertEquals(2, jogador2.getElemento());
+        
+        //NAO muda estados APOS jodador1 JOGAR
+        jogoDaVelha.getProximoAJogar().joga();
+        assertEquals(5, jogador1.getAtual());
+        assertEquals(3, jogador1.getElemento());
+        assertEquals(4, jogador2.getAtual());
+        assertEquals(2, jogador2.getElemento());
+        
+        //muda estados atual de jogador2 apenas
+        jogoDaVelha.getProximoAJogar();
+        assertEquals(5, jogador1.getAtual());
+        assertEquals(3, jogador1.getElemento());
+        assertEquals(6, jogador2.getAtual());
+        assertEquals(4, jogador2.getElemento());
+
+    }
 
 }
