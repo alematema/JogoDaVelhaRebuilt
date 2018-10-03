@@ -58,17 +58,13 @@ public class Tabuleiro {
      */
     public Object set(Object elemento, int linha, int coluna) {
 
+        if (!validar(linha, coluna)) {
+            return POSICAO_INVALIDA;
+        }
+
         int linhaZeroBased = linha - 1;
         int colunaZeroBased = coluna - 1;
 
-        //linha INVÁLIDA
-        if (linhaZeroBased < 0 || linhaZeroBased > dimensao - 1) {
-            return POSICAO_INVALIDA;
-        }
-        //coluna INVÁLIDA
-        if (colunaZeroBased < 0 || colunaZeroBased > dimensao - 1) {
-            return POSICAO_INVALIDA;
-        }
         //elemento inválido
         try {
             if (((Integer) elemento).equals(POSICAO_INVALIDA)) {
@@ -94,16 +90,6 @@ public class Tabuleiro {
      */
     public Object set(Object elemento, int posicao) {
 
-        if (posicao == 0) {
-            return set(elemento, 0, 0);
-        }
-        if (posicao == 1) {
-            return set(elemento, 1, 1);
-        }
-        if (posicao == dimensao * dimensao) {
-            return set(elemento, dimensao, dimensao);
-        }
-
         int linha = transformarEmLinha(posicao);
         int coluna = transformarEmColuna(posicao);
 
@@ -123,18 +109,13 @@ public class Tabuleiro {
      */
     public Object get(int linha, int coluna) {
 
+        if (!validar(linha, coluna)) {
+            return POSICAO_INVALIDA;
+        }
+
         int linhaZeroBased = linha - 1;
         int colunaZeroBased = coluna - 1;
-
-        //linha INVÁLIDA
-        if (linhaZeroBased < 0 || linhaZeroBased > dimensao - 1) {
-            return POSICAO_INVALIDA;
-        }
-        //coluna INVÁLIDA
-        if (colunaZeroBased < 0 || colunaZeroBased > dimensao - 1) {
-            return POSICAO_INVALIDA;
-        }
-
+        
         return tabuleiro[(linhaZeroBased * dimensao + colunaZeroBased)];
 
     }
@@ -150,16 +131,6 @@ public class Tabuleiro {
      */
     public Object get(int posicao) {
 
-        if (posicao == 0) {
-            return get(0, 0);
-        }
-        if (posicao == 1) {
-            return get(1, 1);
-        }
-        if (posicao == dimensao * dimensao) {
-            return get(dimensao, dimensao);
-        }
-
         int linha = transformarEmLinha(posicao);
         int coluna = transformarEmColuna(posicao);
 
@@ -170,8 +141,7 @@ public class Tabuleiro {
     /**
      * Recupera a linha do tabuleiro.
      *
-     * @param linha o numero da linha (1 <= linha e linha <= dimensao)
-     * @ret
+     * @param linha o numero da linha (1 <= linha e linha <= dimensao) @ret
      * urn Lista dos elementos da linha<br> ou null, caso linha seja
      * invalida.(linha < 1 ou linha > dimensao)
      */
@@ -196,8 +166,7 @@ public class Tabuleiro {
     /**
      * Recupera a coluna do tabuleiro.
      *
-     * @param coluna o numero da coluna (1 <= coluna e coluna <= dimensao)
-     * @ret
+     * @param coluna o numero da coluna (1 <= coluna e coluna <= dimensao) @ret
      * urn Lista dos elementos da coluna<br> ou null, caso coluna seja invalida.
      * (coluna < 1 ou coluna > dimensao)
      */
@@ -337,6 +306,9 @@ public class Tabuleiro {
     }
 
     public int transformarEmLinha(int posicao) {
+        if (posicao == 0) {
+            return -1;
+        }
         return (posicao - 1) / dimensao;
     }
 
@@ -351,7 +323,7 @@ public class Tabuleiro {
     }
 
     public boolean validar(int linha, int coluna) {
-        
+
         int linhaZeroBased = linha - 1;
         int colunaZeroBased = coluna - 1;
 
@@ -363,7 +335,7 @@ public class Tabuleiro {
         if (colunaZeroBased < 0 || colunaZeroBased > dimensao - 1) {
             return false;
         }
-        
+
         return true;
     }
 
