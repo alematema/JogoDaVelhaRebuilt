@@ -1,7 +1,7 @@
 package br.edu.undra.modelo;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Um jogo da velha
@@ -11,6 +11,25 @@ import java.util.Random;
 public class JogoDaVelha<T extends Jogador> extends Jogo {
 
     private String id;
+    
+    private JogadorJodoDaVelha jogador1;
+    private JogadorJodoDaVelha jogador2;
+
+    public JogoDaVelha(String nome) {
+        
+        jogador1 = new JogadorJodoDaVelha("jogador 1");
+        jogador2 = new JogadorJodoDaVelha("jogador 2");
+        Tabuleiro tabuleiro = new Tabuleiro(3);
+        
+        List<JogadorJodoDaVelha> jogadores = Arrays.asList(jogador1,jogador2);
+        setNome(nome);
+        setJogadores(jogadores);
+        setTabuleiro(tabuleiro);
+        
+        setUpJogadores();
+    }
+    
+    
 
     public JogoDaVelha(String nome, List<T> jogadores, Tabuleiro tabuleiro) {
         super(nome, jogadores, tabuleiro);
@@ -41,9 +60,15 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
     public void setUpJogadores() {
         for(JogadorJodoDaVelha jogador : (List<JogadorJodoDaVelha>)getJogadores()) jogador.setJogo(this);
     }
-    
-    
 
+    public JogadorJodoDaVelha getJogador1() {
+        return jogador1;
+    }
+
+    public JogadorJodoDaVelha getJogador2() {
+        return jogador2;
+    }
+    
     public String getId() {
         return id;
     }
