@@ -88,7 +88,18 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
             }
 
         }
+        
+        if (proximoAJogar.isPrimeiroAJogar()) {
 
+        } else {
+            if (proximoAJogar.getAtual() == 1) {
+                proximoAJogar.setAtual(2);
+            }
+        }
+
+        proximoAJogar.setElemento(proximoAJogar.getAtual());
+        proximoAJogar.setAtual(proximoAJogar.getAtual() + 2);
+        
         proximoAJogar.setJogou(false);
         ultimoAJogar = proximoAJogar;
 
