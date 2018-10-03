@@ -233,6 +233,33 @@ public class Tabuleiro {
     }
 
     /**
+     * Recupera posiçoes OCUPADAS do tabuleiro.
+     *
+     * @return Lista dos elementos OCUPADOS do tabuleiro.
+     */
+    public List<Object> getPosicoeOcupadas() {
+
+        List<Object> posicoesOcupadas = new ArrayList<>();
+
+        for (int i = 1; i <= dimensao; i++) {
+
+            for (int j = 1; j <= dimensao; j++) {
+
+                if (!get(i, j).equals(POSICAO_LIVRE)) {
+
+                    posicoesOcupadas.add(i + "," + j + "," + (((i - 1) * dimensao + (j - 1)) + 1));
+
+                }
+
+            }
+
+        }
+
+        return posicoesOcupadas;
+
+    }
+    
+    /**
      * Recupera posiçoes livres do tabuleiro.
      *
      * @return Lista dos elementos desocupados do tabuleiro.
