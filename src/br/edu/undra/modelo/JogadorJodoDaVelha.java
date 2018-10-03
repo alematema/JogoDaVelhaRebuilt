@@ -12,6 +12,7 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
 
     private int atual = 2;
     private int elemento = 0;
+    private String ultimoEstadoAposJogar;
 
     public JogadorJodoDaVelha(String nome) {
         super(nome);
@@ -39,6 +40,14 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
 
     public void setElemento(int elemento) {
         this.elemento = elemento;
+    }
+
+    public String getUltimoEstadoAposJogar() {
+        return ultimoEstadoAposJogar;
+    }
+
+    public void setUltimoEstadoAposJogar(String ultimoEstadoAposJogar) {
+        this.ultimoEstadoAposJogar = ultimoEstadoAposJogar;
     }
 
     @Override
@@ -82,26 +91,27 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
 //                    elemento = elemento - 2;
 //                }
             getJogo().setProximoAJogar(this);
+            
 
-            for (JogadorJodoDaVelha j : (List<JogadorJodoDaVelha>) getJogo().getJogadores()) {
-                if (!j.equals(this)) {
-
-                    if ((j.getAtual() - 2) < 1) {
-                        j.setAtual(1);
-                    } else {
-                        j.setAtual(j.getAtual() - 2);;
-                    }
-
-                    if ((j.getElemento() - 2) < 0) {
-                        j.setElemento(0);
-                    } else {
-                        j.setElemento(j.getElemento() - 2);
-                    }
-
-                    break;
-
-                }
-            }
+//            for (JogadorJodoDaVelha j : (List<JogadorJodoDaVelha>) getJogo().getJogadores()) {
+//                if (!j.equals(this)) {
+//
+//                    if ((j.getAtual() - 2) < 1) {
+//                        j.setAtual(1);
+//                    } else {
+//                        j.setAtual(j.getAtual() - 2);;
+//                    }
+//
+//                    if ((j.getElemento() - 2) < 0) {
+//                        j.setElemento(0);
+//                    } else {
+//                        j.setElemento(j.getElemento() - 2);
+//                    }
+//
+//                    break;
+//
+//                }
+//            }
 
             setJogou(false);
 
@@ -134,6 +144,8 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
         System.out.println(getNome() + " jogou");
 
         setJogou(true);
+        
+        ultimoEstadoAposJogar = atual+","+elemento;
 
     }
 
@@ -151,6 +163,8 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
         System.out.println(getNome() + " jogou " + elemento + " na posicao " + linha + "," + coluna);
 
         setJogou(true);
+        
+        ultimoEstadoAposJogar = atual+","+elemento;
 
         return true;
 
