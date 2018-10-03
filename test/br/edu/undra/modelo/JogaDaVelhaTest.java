@@ -256,5 +256,31 @@ public class JogaDaVelhaTest {
         if( ! todosValoresDistintosEntreSi )fail("ESTADOS INCONSISTENTES DOS JOGADORES. ");
 
     }
+    
+    @Test public void testAoMenosUmaTrinca_object_object(){
+        
+        List<Integer> elementos = Arrays.asList(1,3,5);
+        
+        jogador1.setPrimeiroAJogar(true);
+        
+        assertTrue(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador1));
+        assertFalse(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador2));
+        
+        elementos = Arrays.asList(1,0,0);
+        assertFalse(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador1));
+        
+        elementos = Arrays.asList(2,4,6);
+        assertTrue(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador2));
+        
+        elementos = Arrays.asList(2,0,6);
+        assertFalse(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador2));
+        
+        elementos = Arrays.asList(2,4,6);
+        assertFalse(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador1));
+        
+        elementos = Arrays.asList(1,3,5);
+        assertFalse(jogoDaVelha.aoMenosUmaTrinca(elementos, jogador2));
+        
+    }
 
 }
