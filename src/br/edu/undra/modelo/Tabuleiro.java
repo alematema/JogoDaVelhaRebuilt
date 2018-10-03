@@ -339,6 +339,30 @@ public class Tabuleiro {
         return isPosicaoLivre(linha + 1, coluna);
 
     }
+    
+    /**
+     * Retorna uma String correspondente ao estado do tabuleiro.<br>
+     * O estado são os valores que estao armazenados nas posicoes do tabuleiro.
+     * <br>Os valores serao separados por hifen -
+     * <br>1,1,0 corresponde ao valor 0, que esta na linha 1 e na coluna 1
+     * @return String da forma 1,1,0-1,2,0-... 
+     * 
+     */
+    public String getEstado() {
+
+        String estado = "";
+        
+        for(int linha = 1; linha <= dimensao; linha++){
+            
+            for(int coluna = 1; coluna <= dimensao; coluna++){
+                estado+=linha+","+coluna+","+get(linha, coluna)+"-";
+            }
+            
+        }
+        
+        return estado.substring(0, estado.length()-1);
+
+    }
 
     public int transformarEmLinha(int posicao) {
         if (posicao == 0) {
@@ -373,6 +397,8 @@ public class Tabuleiro {
 
         return true;
     }
+    
+    
 
     @Override
     public String toString() {
