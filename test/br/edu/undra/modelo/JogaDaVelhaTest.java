@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * 
  * @author alexandre
  */
 public class JogaDaVelhaTest {
@@ -98,17 +98,27 @@ public class JogaDaVelhaTest {
         assertEquals(jogador2,jogoDaVelha.getProximoAJogar());
         assertEquals(false, jogador2.jogou());        
         assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
-        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
-        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
-        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
-        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
-        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
+//        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
+//        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
+//        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
+//        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
+//        assertNotEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
         
         jogoDaVelha.getProximoAJogar().joga();
         assertEquals(true, jogador2.jogou());        
         assertEquals(null,jogoDaVelha.getProximaJogadaParaJogador(jogador2));
         
         jogoDaVelha.getUltimosAJogar().forEach(e -> System.err.println(e));
+        
+        jogoDaVelha.getProximoAJogar();
+        assertEquals(jogador1,jogoDaVelha.getProximoAJogar());
+        System.out.println(jogoDaVelha.getProximaJogadaParaJogador(jogador1)); 
+        System.out.println(jogoDaVelha.getProximaJogadaParaJogador(jogador1)); 
+        
+//        System.out.println(jogoDaVelha.getProximaJogadaParaJogador(jogador1)); 
+//        System.out.println(jogoDaVelha.getProximaJogadaParaJogador(jogador1)); 
+//        System.out.println(jogoDaVelha.getProximaJogadaParaJogador(jogador1)); 
+              
         
         
     }
