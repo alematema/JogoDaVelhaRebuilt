@@ -55,8 +55,6 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
         super.setPrimeiroAJogar(primeiroAJogar);
         atual = 1;
     }
-    
-    
 
     @Override
     public void desfazerUltimaJogada() {
@@ -74,50 +72,38 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
 
             getJogadas().remove(getJogadas().size() - 1);
 
-            //atualiza estado do jogador 
-            //jogador1 atual 3 e elemento 1
-            //jogador2 atual 4 e elemento 2
-            //jogador1 atual 5 e elemento 3
-            //jogador2 atual 6 e elemento 4
-//                if( ( atual - 2 ) < 1 ) {
-//                    atual = 1;
-//                }else{
-//                    atual = atual - 2;
-//                }
-//                
-//                if((elemento - 2 ) < 0){
-//                    elemento = 0;
-//                }else{
-//                    elemento = elemento - 2;
-//                }
             getJogo().setProximoAJogar(this);
-            
 
-//            for (JogadorJodoDaVelha j : (List<JogadorJodoDaVelha>) getJogo().getJogadores()) {
-//                if (!j.equals(this)) {
-//
-//                    if ((j.getAtual() - 2) < 1) {
-//                        j.setAtual(1);
-//                    } else {
-//                        j.setAtual(j.getAtual() - 2);;
-//                    }
-//
-//                    if ((j.getElemento() - 2) < 0) {
-//                        j.setElemento(0);
-//                    } else {
-//                        j.setElemento(j.getElemento() - 2);
-//                    }
-//
-//                    break;
-//
-//                }
-//            }
+            for (JogadorJodoDaVelha j : (List<JogadorJodoDaVelha>) getJogo().getJogadores()) {
+
+                if (!j.equals(this)) {
+
+                    j.retornarAoUltimoEstadoAposJogar();
+
+                    break;
+
+                }
+            }
 
             setJogou(false);
 
         } else {
             return;
         }
+
+    }
+
+    public void retornarAoUltimoEstadoAposJogar() {
+
+        if (getJogadas().size() < 1) {
+            return;
+        }
+
+        int atualAposJogar = Integer.parseInt(ultimoEstadoAposJogar.split(",")[0]);
+        int elementoAposJogar = Integer.parseInt(ultimoEstadoAposJogar.split(",")[1]);
+
+        atual = atualAposJogar;
+        elemento = elementoAposJogar;
 
     }
 
@@ -144,8 +130,8 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
         System.out.println(getNome() + " jogou");
 
         setJogou(true);
-        
-        ultimoEstadoAposJogar = atual+","+elemento;
+
+        ultimoEstadoAposJogar = atual + "," + elemento;
 
     }
 
@@ -163,8 +149,8 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
         System.out.println(getNome() + " jogou " + elemento + " na posicao " + linha + "," + coluna);
 
         setJogou(true);
-        
-        ultimoEstadoAposJogar = atual+","+elemento;
+
+        ultimoEstadoAposJogar = atual + "," + elemento;
 
         return true;
 
