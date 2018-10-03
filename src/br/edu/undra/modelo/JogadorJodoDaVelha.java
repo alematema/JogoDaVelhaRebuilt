@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
 
-    private int atual = 1;
+    private int atual = 2;
     private int elemento = 0;
 
     public JogadorJodoDaVelha(String nome) {
@@ -40,6 +40,14 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
     public void setElemento(int elemento) {
         this.elemento = elemento;
     }
+
+    @Override
+    public void setPrimeiroAJogar(boolean primeiroAJogar) {
+        super.setPrimeiroAJogar(primeiroAJogar);
+        atual = 1;
+    }
+    
+    
 
     @Override
     public void desfazerUltimaJogada() {
