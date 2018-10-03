@@ -9,9 +9,9 @@ import java.util.List;
  * @author alexandre
  */
 public class Tabuleiro {
-    
-    static public Object POSICAO_LIVRE = 0; 
-    static public Object POSICAO_INVALIDA = -1; 
+
+    static public Object POSICAO_LIVRE = 0;
+    static public Object POSICAO_INVALIDA = -1;
 
     /**
      * A dimensão do tabuleiro : 2 ou 3 ou 4 ... ou N.
@@ -106,7 +106,7 @@ public class Tabuleiro {
 
         int linha = transformarEmLinha(posicao);
         int coluna = transformarEmColuna(posicao);
-        
+
         return set(elemento, linha + 1, coluna);
 
     }
@@ -171,7 +171,9 @@ public class Tabuleiro {
      * Recupera a linha do tabuleiro.
      *
      * @param linha o numero da linha (1 <= linha e linha <= dimensao)
-     * @return Lista dos elementos da linha<br> ou null, caso linha seja invalida.(linha < 1 ou linha > dimensao)
+     * @ret
+     * urn Lista dos elementos da linha<br> ou null, caso linha seja
+     * invalida.(linha < 1 ou linha > dimensao)
      */
     public List<Object> getLinha(int linha) {
 
@@ -193,8 +195,11 @@ public class Tabuleiro {
 
     /**
      * Recupera a coluna do tabuleiro.
+     *
      * @param coluna o numero da coluna (1 <= coluna e coluna <= dimensao)
-     * @return Lista dos elementos da coluna<br> ou null, caso coluna seja invalida. (coluna < 1 ou coluna > dimensao)
+     * @ret
+     * urn Lista dos elementos da coluna<br> ou null, caso coluna seja invalida.
+     * (coluna < 1 ou coluna > dimensao)
      */
     public List<Object> getColuna(int coluna) {
 
@@ -213,14 +218,14 @@ public class Tabuleiro {
         return l;
 
     }
-    
+
     /**
      * Recupera a diagonal principal do tabuleiro.
+     *
      * @return Lista dos elementos da diagonal principal.
      */
     public List<Object> getDiagonalPrincipal() {
 
-        
         List<Object> diagonalPrincipal = new ArrayList<>();
 
         for (int i = 1; i <= dimensao; i++) {
@@ -232,21 +237,24 @@ public class Tabuleiro {
         return diagonalPrincipal;
 
     }
-    
+
     /**
      * Recupera a diagonal secundária do tabuleiro.
+     *
      * @return Lista dos elementos da diagonal secundária.
      */
     public List<Object> getDiagonalSecundaria() {
-        
+
         List<Object> diagonalSecundária = new ArrayList<>();
 
         for (int i = 1; i <= dimensao; i++) {
-            
-            for (int j = 1; j <= dimensao ; j++){
-                
-                if( i + j == dimensao+1) diagonalSecundária.add(get(i, j));
-                
+
+            for (int j = 1; j <= dimensao; j++) {
+
+                if (i + j == dimensao + 1) {
+                    diagonalSecundária.add(get(i, j));
+                }
+
             }
 
         }
@@ -254,25 +262,26 @@ public class Tabuleiro {
         return diagonalSecundária;
 
     }
-    
+
     /**
      * Recupera posiçoes livres do tabuleiro.
+     *
      * @return Lista dos elementos desocupados do tabuleiro.
      */
     public List<Object> getPosicoesLivres() {
-        
+
         List<Object> posicoesLivres = new ArrayList<>();
 
         for (int i = 1; i <= dimensao; i++) {
-            
-            for (int j = 1; j <= dimensao ; j++){
-                
-                if( get(i,j).equals(POSICAO_LIVRE) ) {
-                    
-                    posicoesLivres.add(i+","+j+","+(((i-1)*dimensao+(j-1))+1));
-                    
+
+            for (int j = 1; j <= dimensao; j++) {
+
+                if (get(i, j).equals(POSICAO_LIVRE)) {
+
+                    posicoesLivres.add(i + "," + j + "," + (((i - 1) * dimensao + (j - 1)) + 1));
+
                 }
-                
+
             }
 
         }
@@ -280,31 +289,36 @@ public class Tabuleiro {
         return posicoesLivres;
 
     }
-    
+
     /**
      * Diz se uma posicao indicada por linhaXcoluna está livre.
+     *
      * @param linha a linha
      * @param coluna a coluna
-     * @return true, se está livre a posicao.<br>false, caso ocupada, ou linhaXcoluna seja inválida.
+     * @return true, se está livre a posicao.<br>false, caso ocupada, ou
+     * linhaXcoluna seja inválida.
      */
-    public boolean isPosicaoLivre(int linha, int coluna){
-        
-        Object o = get(linha,coluna);
-        
-        if( o.equals(POSICAO_INVALIDA) ) return false;
-        
+    public boolean isPosicaoLivre(int linha, int coluna) {
+
+        Object o = get(linha, coluna);
+
+        if (o.equals(POSICAO_INVALIDA)) {
+            return false;
+        }
+
         return o.equals(POSICAO_LIVRE);
-        
+
     }
-    
-    
+
     /**
      * Diz se uma posicao indicada por posicao está livre.
+     *
      * @param posicao a posicao
-     * @return true, se está livre a posicao.<br>false, caso ocupada, ou posicao seja inválida.
+     * @return true, se está livre a posicao.<br>false, caso ocupada, ou posicao
+     * seja inválida.
      */
-    public boolean isPosicaoLivre(int posicao){
-        
+    public boolean isPosicaoLivre(int posicao) {
+
         if (posicao <= 0) {
             return isPosicaoLivre(0, 0);
         }
@@ -317,21 +331,40 @@ public class Tabuleiro {
 
         int linha = transformarEmLinha(posicao);
         int coluna = transformarEmColuna(posicao);
-        
+
         return isPosicaoLivre(linha + 1, coluna);
-        
+
     }
-    
-    private int transformarEmLinha(int posicao){
-        return (posicao-1) / dimensao;
+
+    public int transformarEmLinha(int posicao) {
+        return (posicao - 1) / dimensao;
     }
-    
-    private int transformarEmColuna(int posicao){
-        
+
+    public int transformarEmColuna(int posicao) {
+
         int coluna = posicao % dimensao;
-        if(coluna == 0) coluna = dimensao;
-        
+        if (coluna == 0) {
+            coluna = dimensao;
+        }
+
         return coluna;
+    }
+
+    public boolean validar(int linha, int coluna) {
+        
+        int linhaZeroBased = linha - 1;
+        int colunaZeroBased = coluna - 1;
+
+        //linha INVÁLIDA
+        if (linhaZeroBased < 0 || linhaZeroBased > dimensao - 1) {
+            return false;
+        }
+        //coluna INVÁLIDA
+        if (colunaZeroBased < 0 || colunaZeroBased > dimensao - 1) {
+            return false;
+        }
+        
+        return true;
     }
 
     @Override
