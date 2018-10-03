@@ -357,7 +357,7 @@ public class Tabuleiro {
         for (int linha = 1; linha <= dimensao; linha++) {
 
             for (int coluna = 1; coluna <= dimensao; coluna++) {
-                estado += linha + "," + coluna + "," + get(linha, coluna) + "-";
+                estado += linha + "," + coluna + "," + get(linha, coluna) + SEPARADOR;
             }
 
         }
