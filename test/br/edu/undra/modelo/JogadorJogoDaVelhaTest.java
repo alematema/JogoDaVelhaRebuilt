@@ -49,7 +49,7 @@ public class JogadorJogoDaVelhaTest {
     public void tearDown() {
     }
 
-    //@Test
+    @Test
     public void testJoga() {
 
         System.err.println("testJoga");
@@ -78,7 +78,7 @@ public class JogadorJogoDaVelhaTest {
         System.out.println(jogador2.getJogadas());
     }
 
-    @Test
+//    @Test
     public void testDesfazerUltimaJogada() {
 
         System.err.println("testDesfazerUltimaJogada");
@@ -218,7 +218,7 @@ public class JogadorJogoDaVelhaTest {
         System.out.println(jogador2.getJogadas());
     }
 
-    //@Test
+    @Test
     public void testDesfazerUltimaJogadadown() {
 
         System.err.println("testDesfazerUltimaJogada");
@@ -348,7 +348,7 @@ public class JogadorJogoDaVelhaTest {
 
     }
 
-    //@Test
+    @Test
     public void testJoga_int_int_int() {
 
         System.out.println("testJoga_int_int_int");
@@ -378,7 +378,7 @@ public class JogadorJogoDaVelhaTest {
 
     }
 
-    //@Test
+    @Test
     public void testJoga_int() {
 
         System.out.println("testJoga_int");
@@ -392,7 +392,7 @@ public class JogadorJogoDaVelhaTest {
 
     }
 
-    //@Test
+    @Test
     public void testJogaNaPosicao_int_int() {
 
         System.out.println("testJogaNaPosicao_int_int");
