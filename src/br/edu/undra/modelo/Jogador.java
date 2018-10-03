@@ -1,18 +1,22 @@
 package br.edu.undra.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Modela um jogador.
  * @author alexandre
  */
-public abstract class Jogador {
+public abstract class Jogador<T extends Jogo> {
     
     private String nome;
     
     private boolean primeiroAJogar = false;
     private boolean jogou = false;
     private String proximaJogada;
+    private List<String> jogadas = new ArrayList<>();
     
-    private Jogo jogo;
+    private T jogo;
 
     public Jogador() {
     }
@@ -21,16 +25,18 @@ public abstract class Jogador {
         this.nome = nome;
     }
     
-    public Jogador(Jogo jogo) {
+    public Jogador(T jogo) {
         this.jogo = jogo;
     }
 
-    public Jogador(String nome, Jogo jogo) {
+    public Jogador(String nome, T jogo) {
         this.nome = nome;
         this.jogo = jogo;
     }
 
     abstract public void joga();
+    abstract public void desfazerUltimaJogada();
+    
     
     public boolean isPrimeiroAJogar() {
         return primeiroAJogar;
@@ -56,20 +62,26 @@ public abstract class Jogador {
         this.nome = nome;
     }
 
-    public Jogo getJogo() {
+    public T getJogo() {
         return jogo;
     }
 
-    public void setJogo(Jogo jogo) {
+    public void setJogo(T jogo) {
         this.jogo = jogo;
     }
 
     public String getProximaJogada() {
         return proximaJogada;
     }
-
+    
     public void setProximaJogada(String proximaJogada) {
         this.proximaJogada = proximaJogada;
     }
+
+    public List<String> getJogadas() {
+        return jogadas;
+    }
+    
+    
     
 }

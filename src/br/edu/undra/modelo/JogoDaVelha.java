@@ -1,6 +1,7 @@
 package br.edu.undra.modelo;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Um jogo da velha
@@ -16,6 +17,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
         if (jogadores.size() != 2) {
             throw new IllegalArgumentException("Devem haver EXATAMENTE 2 jogadores para o jogo da velha ok.");
         }
+        setUpJogadores();
     }
 
     public JogoDaVelha(List<T> jogadores, Tabuleiro tabuleiro) {
@@ -23,6 +25,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
         if (jogadores.size() != 2) {
             throw new IllegalArgumentException("Devem haver EXATAMENTE 2 jogadores para o jogo da velha ok.");
         }
+        setUpJogadores();
     }
 
     public JogoDaVelha(String nome, String id, List<T> jogadores, Tabuleiro tabuleiro) {
@@ -31,7 +34,15 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
             throw new IllegalArgumentException("Devem haver EXATAMENTE 2 jogadores para o jogo da velha ok.");
         }
         this.id = id;
+        setUpJogadores();
     }
+
+    @Override
+    public void setUpJogadores() {
+        for(JogadorJodoDaVelha jogador : (List<JogadorJodoDaVelha>)getJogadores()) jogador.setJogo(this);
+    }
+    
+    
 
     public String getId() {
         return id;
@@ -52,9 +63,13 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
         return toString;
     }
 
-    JogadorJodoDaVelha ultimoAJogar = null;
+   
     JogadorJodoDaVelha proximoAJogar = null;
 
+    public void setProximoAJogar(JogadorJodoDaVelha proximoAJogar) {
+        this.proximoAJogar = proximoAJogar;
+    }
+    
     @Override
     public JogadorJodoDaVelha getProximoAJogar() {
 
@@ -67,7 +82,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
             getUltimosAJogar().clear();
             
             for (JogadorJodoDaVelha j : (List<JogadorJodoDaVelha>) getJogadores()) {
-                if (!j.equals(ultimoAJogar)) {
+                if (!j.equals(proximoAJogar)) {
 
                     proximoAJogar = j;
                     break;
@@ -101,7 +116,6 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
         proximoAJogar.setAtual(proximoAJogar.getAtual() + 2);
         
         proximoAJogar.setJogou(false);
-        ultimoAJogar = proximoAJogar;
 
         return proximoAJogar;
 
@@ -109,30 +123,22 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
     @Override
     public String getProximaJogadaParaJogador(Jogador jogador) {
+        
         if (jogador.jogou()) {
             return null;
         }
-        System.out.println("pegando proxima jogada para " + jogador.getNome() + ", " +System.nanoTime());
-        return "pegando proxima jogada para " + jogador.getNome();
+        
+        List<Object> posicoesLivres = getTabuleiro().getPosicoesLivres();
+        
+        int posicao = (int)Math.random()*posicoesLivres.size();
+        
+        String posicaoLivre = (String)posicoesLivres.get(posicao);
+        
+        String[] p = posicaoLivre.split(",");
+        
+        System.out.println("pegando proxima jogada " +p[0]+","+p[1] + " para " + jogador.getNome() + ", " +System.nanoTime());
+        
+        return p[0]+","+p[1];
+        
     }
-
-//    public static void main(String[] args) {
-//
-//        Jogador jogador1 = new Jogador("Armando");
-//        Jogador jogador2 = new Jogador("Claudio");
-//
-//        List<Jogador> jogadores = new ArrayList<>();
-//        jogadores.add(jogador2);
-//        jogadores.add(jogador1);
-//
-//        jogador1.setPrimeiroAJogar(true);
-//        jogador1.setProximoAJogar(true);
-//
-//        Tabuleiro tabuleiro = new Tabuleiro(3);
-//
-//        JogoDaVelha jogoDaVelha = new JogoDaVelha("Jogo da Velha", jogadores, tabuleiro);
-//
-//        System.err.println(jogoDaVelha);
-//
-//    }
 }

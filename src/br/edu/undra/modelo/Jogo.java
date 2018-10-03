@@ -75,7 +75,7 @@ public class Jogo<T extends Jogador>  implements Logica{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void setUpJogadores() {
+    public void setUpJogadores() {
         for(T j :jogadores) j.setJogo(this);
     }
 
