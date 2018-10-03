@@ -12,6 +12,7 @@ public class Tabuleiro {
 
     static public Object POSICAO_LIVRE = 0;
     static public Object POSICAO_INVALIDA = -1;
+    static public Object SEPARADOR = "-";
 
     /**
      * A dimensão do tabuleiro : 2 ou 3 ou 4 ... ou N.
@@ -47,12 +48,13 @@ public class Tabuleiro {
 
     /**
      * get a dimensao
+     *
      * @return a dimensao
      */
     public int getDimensao() {
         return dimensao;
     }
-    
+
     /**
      * Insere o elemento no cruzamento da linha e da coluna.
      *
@@ -101,7 +103,7 @@ public class Tabuleiro {
         int linha = transformarEmLinha(posicao);
         int coluna = transformarEmColuna(posicao);
 
-        return set(elemento, linha + 1, coluna);
+        return set(elemento, linha, coluna);
 
     }
 
@@ -123,7 +125,7 @@ public class Tabuleiro {
 
         int linhaZeroBased = linha - 1;
         int colunaZeroBased = coluna - 1;
-        
+
         return tabuleiro[(linhaZeroBased * dimensao + colunaZeroBased)];
 
     }
@@ -142,16 +144,16 @@ public class Tabuleiro {
         int linha = transformarEmLinha(posicao);
         int coluna = transformarEmColuna(posicao);
 
-        return get(linha + 1, coluna);
+        return get(linha, coluna);
 
     }
 
     /**
      * Recupera a linha do tabuleiro.
      *
-     * @param linha o numero da linha (1 <= linha e linha <= dimensao) @ret
-     * urn Lista dos elementos da linha<br> ou null, caso linha seja
-     * invalida.(linha < 1 ou linha > dimensao)
+     * @param linha o numero da linha (1 <= linha e linha <= dimensao) @ret urn
+     * Lista dos elementos da linha<br> ou null, caso linha seja invalida.(linha < 1 ou linha
+     * > dimensao)
      */
     public List<Object> getLinha(int linha) {
 
@@ -266,7 +268,7 @@ public class Tabuleiro {
         return posicoesOcupadas;
 
     }
-    
+
     /**
      * Recupera posiçoes livres do tabuleiro.
      *
@@ -336,41 +338,57 @@ public class Tabuleiro {
         int linha = transformarEmLinha(posicao);
         int coluna = transformarEmColuna(posicao);
 
-        return isPosicaoLivre(linha + 1, coluna);
+        return isPosicaoLivre(linha , coluna);
 
     }
-    
+
     /**
      * Retorna uma String correspondente ao estado do tabuleiro.<br>
      * O estado são os valores que estao armazenados nas posicoes do tabuleiro.
      * <br>Os valores serao separados por hifen -
      * <br>1,1,0 corresponde ao valor 0, que esta na linha 1 e na coluna 1
-     * @return String da forma 1,1,0-1,2,0-... 
-     * 
+     *
+     * @return String da forma 1,1,0-1,2,0-...
      */
     public String getEstado() {
 
         String estado = "";
-        
-        for(int linha = 1; linha <= dimensao; linha++){
-            
-            for(int coluna = 1; coluna <= dimensao; coluna++){
-                estado+=linha+","+coluna+","+get(linha, coluna)+"-";
+
+        for (int linha = 1; linha <= dimensao; linha++) {
+
+            for (int coluna = 1; coluna <= dimensao; coluna++) {
+                estado += linha + "," + coluna + "," + get(linha, coluna) + "-";
             }
-            
+
         }
-        
-        return estado.substring(0, estado.length()-1);
+
+        return estado.substring(0, estado.length() - 1);
 
     }
 
+    /**
+     * Transforma uma posicao em linha que lhe corresponde.
+     * <br>Exemplo : 1 e 2 e 3 sao trasformadas em linha 1, num tabuleiro 5x5.<br>
+     * 6,7 e 8 são transformadas em linha 2.
+     * @param posicao a posicao a se transformar
+     * @return a linha correspondente à posicao
+     */
     public int transformarEmLinha(int posicao) {
         if (posicao == 0) {
-            return -1;
+            return 0;
         }
-        return (posicao - 1) / dimensao;
+        return ((posicao - 1) / dimensao)+1;
     }
 
+    /**
+     * Transforma uma posicao em coluna que lhe corresponde.
+     * <br>Exemplo : 1 e 2 e 3 sao trasformadas em coluna 1, coluna 2 e coluna 3
+     * num tabuleiro 5x5.<br>
+     * 6,7 e 8 são transformadas em coluna 1, coluna 2 e coluna 3.
+     *
+     * @param posicao a posicao a se transformar
+     * @return a coluna correspondente à posicao
+     */
     public int transformarEmColuna(int posicao) {
 
         int coluna = posicao % dimensao;
@@ -381,6 +399,16 @@ public class Tabuleiro {
         return coluna;
     }
 
+    
+    /**
+     * Valida se linha e coluna estao dentro dos limites.
+     * @param linha  1 menor ou igual que linha E linha menor ou igual que dimensao
+     * @param coluna 1 menor ou igual que coluna E coluna menor ou igual que dimensao
+     * @return true , se 1 menor ou igual que linha E linha menor ou igual que dimensao<br>
+     * &&<br>
+     * 1 menor ou igual que coluna E coluna menor ou igual que dimensao.<br>
+     * false, caso contrario.
+     */
     public boolean validar(int linha, int coluna) {
 
         int linhaZeroBased = linha - 1;
@@ -397,8 +425,6 @@ public class Tabuleiro {
 
         return true;
     }
-    
-    
 
     @Override
     public String toString() {
@@ -420,6 +446,27 @@ public class Tabuleiro {
 
         return toString;
 
+    }
+    
+    public static void main(String[] args) {
+        Tabuleiro tabuleiro = new Tabuleiro(5);
+        System.out.println(tabuleiro.transformarEmColuna(1));
+        System.out.println(tabuleiro.transformarEmColuna(2));
+        System.out.println(tabuleiro.transformarEmColuna(3));
+        System.out.println(tabuleiro.transformarEmColuna(6));
+        System.out.println(tabuleiro.transformarEmColuna(7));
+        System.out.println(tabuleiro.transformarEmColuna(8));
+        
+        System.out.println();
+
+        
+        System.out.println(tabuleiro.transformarEmLinha(1));
+        System.out.println(tabuleiro.transformarEmLinha(2));
+        System.out.println(tabuleiro.transformarEmLinha(3));
+        System.out.println(tabuleiro.transformarEmLinha(6));
+        System.out.println(tabuleiro.transformarEmLinha(7));
+        System.out.println(tabuleiro.transformarEmLinha(8));
+        
     }
 
 }
