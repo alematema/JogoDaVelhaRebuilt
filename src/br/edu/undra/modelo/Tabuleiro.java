@@ -246,9 +246,9 @@ public class Tabuleiro {
     }
 
     /**
-     * Recupera posiçoes OCUPADAS do tabuleiro, no formato
-     * linha,coluna,posicao.<br>
-     * Por exemplo, a lista contem strings da forma 2,1,6
+     * Recupera posiçoes OCUPADAS do tabuleiro, retornando uma lista de String.<br>
+     * Cada String está no formato linha,coluna,posicao.<br>
+     * Por exemplo, a lista conterá strings da forma 2,1,6
      * <br>onde o primeiro valor, 2, corresponde à linha;
      * <br>o segundo valor, 1, corresponde à coluna;
      * <br>o terceiro valor, 6, corresponde ao equivalente posicao de linha e
@@ -283,9 +283,9 @@ public class Tabuleiro {
     }
 
     /**
-     * Recupera posiçoes LIVRES do tabuleiro, no formato
-     * linha,coluna,posicao.<br>
-     * Por exemplo, a lista contem strings da forma 2,1,6
+     * Recupera posiçoes LIVRES do tabuleiro, retornando uma lista de String.<br>
+     * Cada String está no formato linha,coluna,posicao.<br>
+     * Por exemplo, a lista conterá strings da forma 2,1,6
      * <br>onde o primeiro valor, 2, corresponde à linha;
      * <br>o segundo valor, 1, corresponde à coluna;
      * <br>o terceiro valor, 6, corresponde ao equivalente posicao de linha e
