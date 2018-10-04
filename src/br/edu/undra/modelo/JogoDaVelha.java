@@ -24,7 +24,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
         jogador1 = new JogadorJodoDaVelha("jogador 1");
         jogador2 = new JogadorJodoDaVelha("jogador 2");
-        Tabuleiro tabuleiro = new Tabuleiro(8);
+        Tabuleiro tabuleiro = new Tabuleiro(3);
 
         List<JogadorJodoDaVelha> jogadores = Arrays.asList(jogador1, jogador2);
         setNome(nome);

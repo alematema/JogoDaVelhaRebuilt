@@ -28,7 +28,7 @@ public class JogoDaVelhaComputadorVersusComputador extends JogoDaVelha<Jogador> 
 
             System.err.println(super.getEstado());
 
-            Thread.sleep(2000);
+            Thread.sleep(1500);
 
         }
 
