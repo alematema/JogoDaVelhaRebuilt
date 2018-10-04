@@ -244,9 +244,15 @@ public class Tabuleiro {
     }
 
     /**
-     * Recupera posiçoes OCUPADAS do tabuleiro.
+     * Recupera posiçoes OCUPADAS do tabuleiro, no formato linha,coluna,posicao.
      *
-     * @return Lista dos elementos OCUPADOS do tabuleiro.
+     * @return Lista das posições OCUPADAS do tabuleiro..<br>
+     * A lista contem strings da forma 2,1,6, onde : <br>
+     * o primeiro valor corresponde à linha;<br>
+     * o segundo valor corresponde à coluna;<br>
+     * o terceiro valor corresponde ao equivalente posicao de linha e coluna, para dimensão desse tabuleiro.<br>
+     * Então, num tabuleiro 5X5, a string 2,1,6 informa que está OCUPADA a posição 6 do tabuleiro, <br>
+     * ou equivalentemente, que a está OCUPADA a posição da linha 2 e coluna 1.
      */
     public List<Object> getPosicoeOcupadas() {
 
@@ -271,9 +277,15 @@ public class Tabuleiro {
     }
 
     /**
-     * Recupera posiçoes livres do tabuleiro.
+     * Recupera posiçoes LIVRES do tabuleiro, no formato linha,coluna,posicao.
      *
-     * @return Lista dos elementos desocupados do tabuleiro.
+     * @return Lista das posições desocupadas do tabuleiro.<br>
+     * A lista contem strings da forma 2,1,6, onde : <br>
+     * o primeiro valor corresponde à linha;<br>
+     * o segundo valor corresponde à coluna;<br>
+     * o terceiro valor corresponde ao equivalente posicao de linha e coluna, para dimensão desse tabuleiro.<br>
+     * Então, num tabuleiro 5X5, a string 2,1,6 informa que está LIVRE a posição 6 do tabuleiro, <br>
+     * ou equivalentemente, que a está LIVRES a posição da linha 2 e coluna 1.
      */
     public List<Object> getPosicoesLivres() {
 
