@@ -113,6 +113,34 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
         
         return toString;
     }
+    
+    public String getEstado(){
+        
+        String comoEstaOJogo = "";
+
+        comoEstaOJogo += "\n";
+
+        String[] estados = getTabuleiro().getEstado().split((String)Tabuleiro.SEPARADOR);
+
+        int coluna = 1;
+        
+        for(String estado : estados){
+            
+            int valor = Integer.parseInt(estado.split(",")[2]);
+            
+            if( valor == 0 )comoEstaOJogo+=". ";
+            else if( valor % 2 == 0 ) comoEstaOJogo+="o ";
+            else comoEstaOJogo+="x ";
+            
+            if( coluna % 3 == 0) comoEstaOJogo+="\n";
+            
+            coluna++;
+            
+        }
+        
+        return comoEstaOJogo;
+        
+    }
 
     JogadorJodoDaVelha proximoAJogar = null;
 
@@ -179,7 +207,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
         String[] p = posicaoLivre.split(",");
 
-        System.out.println("pegando proxima jogada " + p[0] + "," + p[1] + " para " + jogador.getNome() + ", " + System.nanoTime());
+        //System.out.println("pegando proxima jogada " + p[0] + "," + p[1] + " para " + jogador.getNome() + ", " + System.nanoTime());
 
         return p[0] + "," + p[1];
 
@@ -284,6 +312,10 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
         }
 
         return aoMenosUmaTrinca;
+    }
+    
+    public boolean jogoFinalizou(){
+        return jogador1.venceu() || jogador2.venceu();
     }
     
     public static void main(String[] args) {
