@@ -122,7 +122,6 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
         return getJogo().jogadorVenceu(this);
     }
     
-    @Override
     public void joga() {
 
         //logica de jogar vai aqui
@@ -178,7 +177,7 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
         int linha = getJogo().getTabuleiro().transformarEmLinha(posicao);
         int coluna = getJogo().getTabuleiro().transformarEmColuna(posicao);
 
-        return joga(linha + 1, coluna);
+        return joga(linha, coluna);
 
     }
 
