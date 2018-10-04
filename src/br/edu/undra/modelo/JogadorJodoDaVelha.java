@@ -151,11 +151,17 @@ public class JogadorJodoDaVelha<J extends Jogo> extends Jogador {
             return false;
         }
 
+        if( ! getJogo().getTabuleiro().isPosicaoLivre(linha, coluna) ) return false;
+        
         getJogo().getTabuleiro().set(elemento, linha, coluna);
+        
+        getJogadas().add(linha+","+coluna + "," + elemento);
 
         getJogo().getUltimosAJogar().add(this);
 
-        System.out.println(getNome() + " jogou " + elemento + " na posicao " + linha + "," + coluna);
+//        System.out.println(getNome() + " jogou " + elemento + " na posicao " + linha + "," + coluna);
+
+        System.out.println(getNome() + " jogou");
 
         setJogou(true);
 
