@@ -86,6 +86,10 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
         this.id = id;
     }
 
+    public void inicia() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     @Override
     public String toString() {
 
@@ -223,7 +227,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
         seed[5] = 30;
 
         SecureRandom r = new SecureRandom(seed);
-        
+
         int posicao = r.nextInt(posicoesLivres.size() >= 1 ? posicoesLivres.size() : 1);
 
         String posicaoLivre = (String) posicoesLivres.get(posicao);
@@ -231,7 +235,6 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
         String[] p = posicaoLivre.split(",");
 
         //System.out.println("pegando proxima jogada " + p[0] + "," + p[1] + " para " + jogador.getNome() + ", " + System.nanoTime());
-       
         return p[0] + "," + p[1];
 
     }
