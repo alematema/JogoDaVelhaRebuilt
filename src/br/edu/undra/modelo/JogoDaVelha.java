@@ -1,8 +1,10 @@
 package br.edu.undra.modelo;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * Um jogo da velha
@@ -201,7 +203,17 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
         List<Object> posicoesLivres = getTabuleiro().getPosicoesLivres();
 
-        int posicao = (int) Math.random() * posicoesLivres.size();
+        byte[] seed = new byte[6];
+        seed[0] = 2;
+        seed[1] = -1;
+        seed[2] = 12;
+        seed[3] = 11;
+        seed[4] = -25;
+        seed[5] = 30;
+        
+        SecureRandom r = new SecureRandom(seed);
+        
+        int posicao = r.nextInt(posicoesLivres.size()) ;
 
         String posicaoLivre = (String) posicoesLivres.get(posicao);
 
