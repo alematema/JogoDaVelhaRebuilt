@@ -152,7 +152,8 @@ public class Tabuleiro {
      * Recupera a linha do tabuleiro.
      *
      * @param linha o numero da linha (1 <= linha e linha <= dimensao) 
-     * @return Lista dos elementos da linha<br> 
+     * @ret
+     * urn Lista dos elementos da linha<br>
      * ou null, caso linha seja invalida.<br>
      * (linha < 1 ou linha > dimensao)
      */
@@ -178,7 +179,8 @@ public class Tabuleiro {
      * Recupera a coluna do tabuleiro.
      *
      * @param coluna o numero da coluna (1 <= coluna e coluna <= dimensao) 
-     * @return Lista dos elementos da coluna<br> ou null, caso coluna seja invalida.
+     * @ret
+     * urn Lista dos elementos da coluna<br> ou null, caso coluna seja invalida.
      * (coluna < 1 ou coluna > dimensao)
      */
     public List<Object> getColuna(int coluna) {
@@ -244,15 +246,19 @@ public class Tabuleiro {
     }
 
     /**
-     * Recupera posiçoes OCUPADAS do tabuleiro, no formato linha,coluna,posicao.
+     * Recupera posiçoes OCUPADAS do tabuleiro, no formato
+     * linha,coluna,posicao.<br>
+     * Por exemplo, a lista contem strings da forma 2,1,6
+     * <br>onde o primeiro valor, 2, corresponde à linha;
+     * <br>o segundo valor, 1, corresponde à coluna;
+     * <br>o terceiro valor, 6, corresponde ao equivalente posicao de linha e
+     * coluna, para dimensão desse tabuleiro.
+     * <br>Então, num tabuleiro 5X5, a string 2,1,6 informa que está OCUPADA a
+     * posição 6 do tabuleiro, ou equivalentemente,
+     * <br>que está OCUPADA a posição da linha 2 e coluna 1.
+     *
      *
      * @return Lista das posições OCUPADAS do tabuleiro..<br>
-     * A lista contem strings da forma 2,1,6 onde : <br>
-     * o primeiro valor corresponde à linha;<br>
-     * o segundo valor corresponde à coluna;<br>
-     * o terceiro valor corresponde ao equivalente posicao de linha e coluna, para dimensão desse tabuleiro.<br>
-     * Então, num tabuleiro 5X5, a string 2,1,6 informa que está OCUPADA a posição 6 do tabuleiro, <br>
-     * ou equivalentemente, que a está OCUPADA a posição da linha 2 e coluna 1.
      */
     public List<Object> getPosicoeOcupadas() {
 
@@ -277,15 +283,19 @@ public class Tabuleiro {
     }
 
     /**
-     * Recupera posiçoes LIVRES do tabuleiro, no formato linha,coluna,posicao.
+     * Recupera posiçoes LIVRES do tabuleiro, no formato
+     * linha,coluna,posicao.<br>
+     * Por exemplo, a lista contem strings da forma 2,1,6
+     * <br>onde o primeiro valor, 2, corresponde à linha;
+     * <br>o segundo valor, 1, corresponde à coluna;
+     * <br>o terceiro valor, 6, corresponde ao equivalente posicao de linha e
+     * coluna, para dimensão desse tabuleiro.
+     * <br>Então, num tabuleiro 5X5, a string 2,1,6 informa que está LIVRE a
+     * posição 6 do tabuleiro, ou equivalentemente,
+     * <br>que está LIVRE a posição da linha 2 e coluna 1.
+     *
      *
      * @return Lista das posições desocupadas do tabuleiro.<br>
-     * A lista contem strings da forma 2,1,6 onde : <br>
-     * o primeiro valor corresponde à linha;<br>
-     * o segundo valor corresponde à coluna;<br>
-     * o terceiro valor corresponde ao equivalente posicao de linha e coluna, para dimensão desse tabuleiro.<br>
-     * Então, num tabuleiro 5X5, a string 2,1,6 informa que está LIVRE a posição 6 do tabuleiro, <br>
-     * ou equivalentemente, que a está LIVRES a posição da linha 2 e coluna 1.
      */
     public List<Object> getPosicoesLivres() {
 
@@ -351,7 +361,7 @@ public class Tabuleiro {
         int linha = transformarEmLinha(posicao);
         int coluna = transformarEmColuna(posicao);
 
-        return isPosicaoLivre(linha , coluna);
+        return isPosicaoLivre(linha, coluna);
 
     }
 
@@ -381,8 +391,10 @@ public class Tabuleiro {
 
     /**
      * Transforma uma posicao em linha que lhe corresponde.
-     * <br>Exemplo : 1 e 2 e 3 sao trasformadas em linha 1, num tabuleiro 5x5.<br>
+     * <br>Exemplo : 1 e 2 e 3 sao trasformadas em linha 1, num tabuleiro
+     * 5x5.<br>
      * 6,7 e 8 são transformadas em linha 2.
+     *
      * @param posicao a posicao a se transformar
      * @return a linha correspondente à posicao
      */
@@ -390,7 +402,7 @@ public class Tabuleiro {
         if (posicao == 0) {
             return 0;
         }
-        return ((posicao - 1) / dimensao)+1;
+        return ((posicao - 1) / dimensao) + 1;
     }
 
     /**
@@ -412,12 +424,15 @@ public class Tabuleiro {
         return coluna;
     }
 
-    
     /**
      * Valida se linha e coluna estao dentro dos limites.
-     * @param linha  1 menor ou igual que linha E linha menor ou igual que dimensao
-     * @param coluna 1 menor ou igual que coluna E coluna menor ou igual que dimensao
-     * @return true , se 1 menor ou igual que linha E linha menor ou igual que dimensao<br>
+     *
+     * @param linha 1 menor ou igual que linha E linha menor ou igual que
+     * dimensao
+     * @param coluna 1 menor ou igual que coluna E coluna menor ou igual que
+     * dimensao
+     * @return true , se 1 menor ou igual que linha E linha menor ou igual que
+     * dimensao<br>
      * &&<br>
      * 1 menor ou igual que coluna E coluna menor ou igual que dimensao.<br>
      * false, caso contrario.
@@ -460,7 +475,7 @@ public class Tabuleiro {
         return toString;
 
     }
-    
+
     public static void main(String[] args) {
         Tabuleiro tabuleiro = new Tabuleiro(5);
         System.out.println(tabuleiro.transformarEmColuna(1));
@@ -469,17 +484,16 @@ public class Tabuleiro {
         System.out.println(tabuleiro.transformarEmColuna(6));
         System.out.println(tabuleiro.transformarEmColuna(7));
         System.out.println(tabuleiro.transformarEmColuna(8));
-        
+
         System.out.println();
 
-        
         System.out.println(tabuleiro.transformarEmLinha(1));
         System.out.println(tabuleiro.transformarEmLinha(2));
         System.out.println(tabuleiro.transformarEmLinha(3));
         System.out.println(tabuleiro.transformarEmLinha(6));
         System.out.println(tabuleiro.transformarEmLinha(7));
         System.out.println(tabuleiro.transformarEmLinha(8));
-        
+
     }
 
 }
