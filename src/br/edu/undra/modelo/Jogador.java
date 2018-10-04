@@ -35,8 +35,17 @@ public abstract class Jogador<T extends Jogo> {
     }
 
     abstract public void joga();
+    abstract public boolean joga(int linha, int coluna);
+    abstract public boolean joga(int elemento, int linha, int coluna);
+    abstract  public boolean joga(int posicao);
+    abstract boolean jogaNaPosicao(int elemento, int posicao);
+    
     abstract public void desfazerUltimaJogada();
     
+    
+     {
+
+   }
     
     public boolean isPrimeiroAJogar() {
         return primeiroAJogar;
