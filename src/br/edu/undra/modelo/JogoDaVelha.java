@@ -24,7 +24,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
         jogador1 = new JogadorJodoDaVelha("jogador 1");
         jogador2 = new JogadorJodoDaVelha("jogador 2");
-        Tabuleiro tabuleiro = new Tabuleiro(5);
+        Tabuleiro tabuleiro = new Tabuleiro(8);
 
         List<JogadorJodoDaVelha> jogadores = Arrays.asList(jogador1, jogador2);
         setNome(nome);
@@ -110,7 +110,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
                 toString += "x ";
             }
 
-            if (coluna % 3 == 0) {
+            if (coluna % getTabuleiro().getDimensao() == 0) {
                 toString += "\n";
             }
 
