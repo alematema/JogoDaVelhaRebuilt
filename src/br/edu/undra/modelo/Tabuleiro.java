@@ -151,9 +151,10 @@ public class Tabuleiro {
     /**
      * Recupera a linha do tabuleiro.
      *
-     * @param linha o numero da linha (1 <= linha e linha <= dimensao) @ret urn
-     * Lista dos elementos da linha<br> ou null, caso linha seja invalida.(linha < 1 ou linha
-     * > dimensao)
+     * @param linha o numero da linha (1 <= linha e linha <= dimensao) 
+     * @return Lista dos elementos da linha<br> 
+     * ou null, caso linha seja invalida.<br>
+     * (linha < 1 ou linha > dimensao)
      */
     public List<Object> getLinha(int linha) {
 
@@ -176,8 +177,8 @@ public class Tabuleiro {
     /**
      * Recupera a coluna do tabuleiro.
      *
-     * @param coluna o numero da coluna (1 <= coluna e coluna <= dimensao) @ret
-     * urn Lista dos elementos da coluna<br> ou null, caso coluna seja invalida.
+     * @param coluna o numero da coluna (1 <= coluna e coluna <= dimensao) 
+     * @return Lista dos elementos da coluna<br> ou null, caso coluna seja invalida.
      * (coluna < 1 ou coluna > dimensao)
      */
     public List<Object> getColuna(int coluna) {
