@@ -16,7 +16,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
     private JogadorJodoDaVelha jogador1;
     private JogadorJodoDaVelha jogador2;
-    private String ondeVenceu="";
+    private String ondeVenceu = "";
 
     public JogoDaVelha(String nome) {
 
@@ -24,7 +24,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
         jogador1 = new JogadorJodoDaVelha("jogador 1");
         jogador2 = new JogadorJodoDaVelha("jogador 2");
-        Tabuleiro tabuleiro = new Tabuleiro(3);
+        Tabuleiro tabuleiro = new Tabuleiro(5);
 
         List<JogadorJodoDaVelha> jogadores = Arrays.asList(jogador1, jogador2);
         setNome(nome);
@@ -77,7 +77,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
     public String getOndeVenceu() {
         return ondeVenceu;
     }
-    
+
     public String getId() {
         return id;
     }
@@ -88,59 +88,71 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
     @Override
     public String toString() {
-        
+
         String toString = "";
 
         toString += getNome();
         toString += "\n\n";
 
-        String[] estados = getTabuleiro().getEstado().split((String)Tabuleiro.SEPARADOR);
+        String[] estados = getTabuleiro().getEstado().split((String) Tabuleiro.SEPARADOR);
 
         int coluna = 1;
-        
-        for(String estado : estados){
-            
+
+        for (String estado : estados) {
+
             int valor = Integer.parseInt(estado.split(",")[2]);
-            
-            if( valor == 0 )toString+=". ";
-            else if( valor % 2 == 0 ) toString+="o ";
-            else toString+="x ";
-            
-            if( coluna % 3 == 0) toString+="\n";
-            
+
+            if (valor == 0) {
+                toString += ". ";
+            } else if (valor % 2 == 0) {
+                toString += "o ";
+            } else {
+                toString += "x ";
+            }
+
+            if (coluna % 3 == 0) {
+                toString += "\n";
+            }
+
             coluna++;
-            
+
         }
-        
+
         return toString;
     }
-    
-    public String getEstado(){
-        
+
+    public String getEstado() {
+
         String comoEstaOJogo = "";
 
         comoEstaOJogo += "\n";
 
-        String[] estados = getTabuleiro().getEstado().split((String)Tabuleiro.SEPARADOR);
+        String[] estados = getTabuleiro().getEstado().split((String) Tabuleiro.SEPARADOR);
 
         int coluna = 1;
-        
-        for(String estado : estados){
-            
+
+        for (String estado : estados) {
+
             int valor = Integer.parseInt(estado.split(",")[2]);
-            
-            if( valor == 0 )comoEstaOJogo+=". ";
-            else if( valor % 2 == 0 ) comoEstaOJogo+="o ";
-            else comoEstaOJogo+="x ";
-            
-            if( coluna % 3 == 0) comoEstaOJogo+="\n";
-            
+
+            if (valor == 0) {
+                comoEstaOJogo += ". ";
+            } else if (valor % 2 == 0) {
+                comoEstaOJogo += "o ";
+            } else {
+                comoEstaOJogo += "x ";
+            }
+
+            if (coluna % getTabuleiro().getDimensao() == 0) {
+                comoEstaOJogo += "\n";
+            }
+
             coluna++;
-            
+
         }
-        
+
         return comoEstaOJogo;
-        
+
     }
 
     JogadorJodoDaVelha proximoAJogar = null;
@@ -209,17 +221,17 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
         seed[3] = 11;
         seed[4] = -25;
         seed[5] = 30;
-        
+
         SecureRandom r = new SecureRandom(seed);
         
-        int posicao = r.nextInt(posicoesLivres.size()) ;
+        int posicao = r.nextInt(posicoesLivres.size() >= 1 ? posicoesLivres.size() : 1);
 
         String posicaoLivre = (String) posicoesLivres.get(posicao);
 
         String[] p = posicaoLivre.split(",");
 
         //System.out.println("pegando proxima jogada " + p[0] + "," + p[1] + " para " + jogador.getNome() + ", " + System.nanoTime());
-
+       
         return p[0] + "," + p[1];
 
     }
@@ -237,12 +249,12 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
             if (aoMenosUmaTrinca(elementos, jogador)) {
                 venceu = true;
-                ondeVenceu = "coluna "+coluna;
+                ondeVenceu = "coluna " + coluna;
                 break;
             }
 
         }
-        
+
         if (!venceu) {//CONTINUA PROCURANDO TRINCA ...
 
             //varre linhas procurando trinca
@@ -252,14 +264,14 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
                 if (aoMenosUmaTrinca(elementos, jogador)) {
                     venceu = true;
-                    ondeVenceu = "linha "+linha;
+                    ondeVenceu = "linha " + linha;
                     break;
                 }
 
             }
 
         }
-        
+
         if (!venceu) {//CONTINUA PROCURANDO TRINCA ...
 
             //varre diagonal principal procurando trinca
@@ -276,7 +288,7 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
             }
 
         }
-        
+
         if (!venceu) {//CONTINUA PROCURANDO TRINCA ...
 
             //varre diagonal secundaria procurando trinca
@@ -324,14 +336,14 @@ public class JogoDaVelha<T extends Jogador> extends Jogo {
 
         return aoMenosUmaTrinca;
     }
-    
-    public boolean jogoFinalizou(){
-        return jogador1.venceu() || jogador2.venceu();
+
+    public boolean jogoFinalizou() {
+        return jogador1.venceu() || jogador2.venceu() || getTabuleiro().getPosicoesLivres().size() == 0;
     }
-    
+
     public static void main(String[] args) {
         JogoDaVelha jogoDaVelha = new JogoDaVelha("Jogo Da Velha");
         System.err.println(jogoDaVelha);
-        
+
     }
 }
