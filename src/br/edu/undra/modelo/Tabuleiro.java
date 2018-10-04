@@ -247,7 +247,7 @@ public class Tabuleiro {
      * Recupera posiçoes OCUPADAS do tabuleiro, no formato linha,coluna,posicao.
      *
      * @return Lista das posições OCUPADAS do tabuleiro..<br>
-     * A lista contem strings da forma 2,1,6, onde : <br>
+     * A lista contem strings da forma 2,1,6 onde : <br>
      * o primeiro valor corresponde à linha;<br>
      * o segundo valor corresponde à coluna;<br>
      * o terceiro valor corresponde ao equivalente posicao de linha e coluna, para dimensão desse tabuleiro.<br>
@@ -280,7 +280,7 @@ public class Tabuleiro {
      * Recupera posiçoes LIVRES do tabuleiro, no formato linha,coluna,posicao.
      *
      * @return Lista das posições desocupadas do tabuleiro.<br>
-     * A lista contem strings da forma 2,1,6, onde : <br>
+     * A lista contem strings da forma 2,1,6 onde : <br>
      * o primeiro valor corresponde à linha;<br>
      * o segundo valor corresponde à coluna;<br>
      * o terceiro valor corresponde ao equivalente posicao de linha e coluna, para dimensão desse tabuleiro.<br>
