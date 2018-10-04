@@ -14,6 +14,7 @@ public class JogoDaVelhaHumanoVersusComputador extends JogoDaVelha {
         super(nome);
     }
 
+    @Override
     public void inicia() {
 
         System.err.println(super.getNome());

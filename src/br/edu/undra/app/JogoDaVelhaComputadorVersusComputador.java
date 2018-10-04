@@ -16,7 +16,8 @@ public class JogoDaVelhaComputadorVersusComputador extends JogoDaVelha<Jogador> 
         super(nome);
     }
 
-    public void inicia() throws InterruptedException {
+    @Override
+    public void inicia() {
         
         System.err.println(super.getNome());
 
@@ -28,7 +29,11 @@ public class JogoDaVelhaComputadorVersusComputador extends JogoDaVelha<Jogador> 
 
             System.err.println(super.getEstado());
 
-            Thread.sleep(1500);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(JogoDaVelhaComputadorVersusComputador.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
 
@@ -45,11 +50,7 @@ public class JogoDaVelhaComputadorVersusComputador extends JogoDaVelha<Jogador> 
     public static void main(String[] args) {
 
         JogoDaVelhaComputadorVersusComputador computadorVersusComputador = new JogoDaVelhaComputadorVersusComputador("Jogo da velha : computador contra o computador");
-        try {
-            computadorVersusComputador.inicia();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(JogoDaVelhaComputadorVersusComputador.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        computadorVersusComputador.inicia();
     }
 
 }
